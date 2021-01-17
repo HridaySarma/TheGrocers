@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#fff"
+    android:background="#fff"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".home.HomeFragment.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            app:cardElevation="5dp"
+            android:backgroundTint="#AAAAAA"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/location_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="@font/latobold"
+                    android:textSize="16sp"
+                    android:textColor="#FFDBDC"
+                    android:letterSpacing="0.1"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@drawable/ic_baseline_place_24"
+                    android:text="Current Address"
+                    android:layout_gravity="center"
+                    />
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content">
+
+            <com.asksira.loopingviewpager.LoopingViewPager
+                android:id="@+id/banner_pager"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:autoScroll="false"
+                app:isInfinite="false"
+                />
+            <com.rd.PageIndicatorView
+                android:id="@+id/pager_indicator_home"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                app:piv_viewPager="@+id/banner_pager"
+                app:piv_animationDuration="300"
+                app:piv_animationType="worm"
+                app:piv_radius="5dp"
+                android:layout_marginBottom="30dp"
+                android:layout_alignParentBottom="true"
+                app:piv_padding="5dp"
+                android:layout_centerHorizontal="true"
+                app:piv_selectedColor="#E80F0F"
+                app:piv_strokeWidth="2dp"
+                app:piv_unselectedColor="#fff"
+                app:piv_interactiveAnimation="true"
+                app:piv_dynamicCount="true"
+                />
+
+
+        </RelativeLayout>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            app:cardElevation="10dp"
+            android:backgroundTint="#173247"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:padding="5dp"
+                    android:layout_height="wrap_content"
+                    android:text="CATEGORIES"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/categories_recycler_view"
+                    android:layout_width="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#173247"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="BEST DEALS"
+                android:textSize="20sp"
+                android:textColor="#FAFAFA"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:fontFamily="@font/varela_round"
+                android:gravity="center"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/best_deals_recycler_view"
+                android:layout_width="match_parent"
+                android:scrollbars="horizontal"
+                android:overScrollMode="ifContentScrolls"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                android:scrollbarSize="2dp"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollIndicators="bottom"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/best_deals_item"
+                android:layout_margin="10dp"
+                />
+
+        </LinearLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            app:cardElevation="10dp"
+            android:layout_margin="10dp"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:id="@+id/singleBannerImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="center"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="3dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#173247"
+            app:cardElevation="5dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp"
+                android:paddingBottom="10dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fff"
+                    android:text="POPULAR CATEGORIES"
+                    android:layout_margin="15dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/popular_categories_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/view_credits_btn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/pitchColor"
+            android:text="VIEW CREDITS"
+            android:textSize="18sp"
+            android:fontFamily="@font/ntfreg"
+            />
+
+    </LinearLayout>
+
+</ScrollView>

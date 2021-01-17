@@ -1,0 +1,120 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.client.thegrocers"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.google.firebase:firebase-auth:19.4.0'
+    implementation 'com.google.firebase:firebase-database:19.5.1'
+    implementation 'com.google.firebase:firebase-storage:19.2.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
+
+    /// Razor Pay ///
+    implementation 'com.razorpay:checkout:1.5.16'
+    /// Razor Pay ///
+
+
+    /// Other Main Libraries ///
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.1'
+    implementation 'androidx.navigation:navigation-ui:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'com.google.firebase:firebase-messaging:21.0.0'
+    implementation 'com.google.maps.android:android-maps-utils:0.5+'
+
+    /// Other Main Libraries ///
+
+    //Rx Java
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
+    //Rx Java
+
+//    /// Third Party Libraries ///
+    implementation 'id.zelory:compressor:1.0.4'
+    implementation 'com.github.florent37:shapeofview:1.4.7'
+    implementation 'org.greenrobot:eventbus:3.2.0'
+    implementation 'com.github.d-max:spots-dialog:1.1@aar'
+    implementation 'com.asksira.android:loopingviewpager:1.1.4'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    implementation 'com.github.ibrahimsn98:NiceBottomBar:2.3'
+//    implementation 'com.github.ibrahimsn98:NiceBottomBar:2.3'
+    implementation 'androidx.room:room-rxjava2:2.3.0-alpha03'
+    annotationProcessor 'androidx.room:room-compiler:2.3.0-alpha03'
+
+
+    implementation 'com.github.andremion:counterfab:1.2.2-alpha1'
+    implementation 'com.karumi:dexter:5.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.1'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
+    implementation 'com.firebaseui:firebase-ui-auth:5.1.0'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation 'com.github.ome450901:SimpleRatingBar:1.5.0'
+    implementation 'com.github.arimorty:floatingsearchview:2.1.1'
+    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+    implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+    implementation 'com.jsibbold:zoomage:1.3.1'
+    implementation 'com.airbnb.android:lottie:3.4.2'
+    implementation 'com.github.yash786agg:AnimatedLoadingIndicator:v1.3'
+    implementation 'com.github.Kong.unirest-java:unirest-java:v3.11.00'
+
+    implementation 'com.github.khirr:Android-Privacy-Policy:1.0.3'
+    implementation 'com.squareup.okhttp3:okhttp:4.7.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.7'
+    implementation 'com.github.addisonelliott:SegmentedButton:3.0.0'
+    /// Third Party Libraries ///
+
+    /// Mapbox ///
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.2.0'
+    implementation "com.mapbox.mapboxsdk:mapbox-android-plugin-traffic:0.7.0"
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.12.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.7.0'
+    /// Mapbox ///
+
+    /// My Library ///
+    implementation 'com.github.HridaySarma:AnimatedNumberButton:1.0.0'
+    implementation 'com.github.HridaySarma:EZIPSMSAPI:1.0.0'
+    implementation 'com.github.HridaySarma:ZoomingRecyclerView:1.0.0'
+/// My Library ///
+}

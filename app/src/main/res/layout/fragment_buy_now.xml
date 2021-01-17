@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".home.SingleBuyNow.BuyNowFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkout"
+            android:textSize="29sp"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/walkwayblack"
+            android:drawableEnd="@drawable/ic_baseline_arrow_right_alt_24"
+            android:textColor="#fff"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:backgroundTint="#fff"
+            app:cardElevation="5dp"
+            android:layout_marginTop="20sp"
+            android:layout_height="400dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Items"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textColor="#000"
+                    android:textSize="22sp"
+                    android:fontFamily="serif"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/items_by_nw_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:backgroundTint="#fff"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:textSize="18sp"
+                        android:drawablePadding="15dp"
+                        android:textColor="#3F51B5"
+                        android:padding="5dp"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_right_black"
+                        android:fontFamily="serif"
+                        android:letterSpacing="0.2"
+                        />
+
+                    <TextView
+                        android:id="@+id/total_bynw_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rs 5000"
+                        android:textSize="18sp"
+                        android:paddingEnd="15dp"
+                        android:drawablePadding="15dp"
+                        android:textColor="#FF5722"
+                        android:gravity="end"
+                        android:padding="5dp"
+                        android:fontFamily="serif"
+                        android:letterSpacing="0.2"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Delivery Charges"
+                        android:textSize="18sp"
+                        android:drawablePadding="15dp"
+                        android:textColor="#3F51B5"
+                        android:padding="5dp"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_right_black"
+                        android:fontFamily="serif"
+                        android:letterSpacing="0.2"
+                        />
+
+                    <TextView
+                        android:id="@+id/delivery_charges_bynw_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rs 50"
+                        android:textSize="18sp"
+                        android:drawablePadding="15dp"
+                        android:textColor="#FF5722"
+                        android:gravity="end"
+                        android:padding="5dp"
+                        android:paddingEnd="15dp"
+                        android:fontFamily="serif"
+                        android:letterSpacing="0.2"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sub-Total"
+                        android:textSize="18sp"
+                        android:drawablePadding="15dp"
+                        android:textColor="#3F51B5"
+                        android:padding="5dp"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_right_black"
+                        android:fontFamily="serif"
+                        android:letterSpacing="0.2"
+                        />
+
+                    <TextView
+                        android:id="@+id/subtotal_bynw_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rs 5000"
+                        android:textSize="18sp"
+                        android:drawablePadding="15dp"
+                        android:textColor="#FF5722"
+                        android:paddingEnd="15dp"
+                        android:gravity="end"
+                        android:padding="5dp"
+                        android:fontFamily="serif"
+                        android:letterSpacing="0.2"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:backgroundTint="#fff"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SELECT PAYMENT METHOD"
+                    android:textColor="#431818"
+                    android:textSize="20sp"
+                    android:fontFamily="serif"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/cod_bynw_rdo_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="COD"
+                        android:textSize="20sp"
+                        android:padding="5dp"
+                        android:textColor="#000"
+                        android:gravity="center"
+                        android:buttonTint="#000"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/pay_nw_bynw_rdo_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PAY NOW"
+                        android:textSize="20sp"
+                        android:padding="5dp"
+                        android:textColor="#000"
+                        android:gravity="center"
+                        android:buttonTint="#000"
+                        />
+
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/place_order_bynw_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PLACE ORDER"
+            android:letterSpacing="0.1"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#2E2A2A"
+            />
+
+    </LinearLayout>
+
+
+
+</ScrollView>

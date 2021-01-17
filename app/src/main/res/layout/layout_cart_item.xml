@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="5dp"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="5dp"
+    android:backgroundTint="#fff"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:padding="16dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_cart"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:id="@+id/txt_product_name"
+                    android:textColor="#000"
+                    android:text="Cart"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:textSize="17sp"
+                    android:fontFamily="@font/playfairdisplay"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ruppee_icn"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/searsn"
+                        android:id="@+id/txt_product_selling_price_cart"
+                        android:layout_marginEnd="4dp"
+                        android:textSize="20sp"
+                        android:text="100"
+                        android:paddingEnd="4dp"
+                        android:textStyle="italic"
+                        android:textColor="#E60D0D"
+                        android:layout_marginStart="8dp"
+                        />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="top"
+                        android:src="@drawable/ruppee_icn"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_product_price_cart"
+                        android:layout_marginEnd="8dp"
+                        android:textSize="16sp"
+                        android:text="200"
+                        android:layout_gravity="top"
+                        android:textStyle="italic"
+                        android:textColor="#E60D0D"
+                        android:layout_marginStart="8dp"
+                        />
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:id="@+id/number_button_cart"
+                android:gravity="center"
+                android:layout_marginBottom="18dp"
+                app:backGroundColor="#1000"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:textSize="4sp"
+                app:textColor="#000"
+                app:initialNumber="1"
+                app:finalNumber="20"
+                />
+
+            <Button
+                android:id="@+id/delete_cart_item"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:backgroundTint="#E60303"
+                android:text="DELETE"
+                />
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

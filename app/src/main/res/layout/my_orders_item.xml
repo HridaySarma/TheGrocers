@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="260dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:backgroundTint="#fff"
+    app:cardElevation="5dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_height="220dp">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_margin="3dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/order_img"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="match_parent"
+                    android:src="@drawable/picked_location_icon"
+                    android:scaleType="fitCenter"
+                    />
+
+                <View
+                    android:id="@+id/view_in_order_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#7000"
+                    />
+
+                <TextView
+                    android:id="@+id/no_of_order_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="+ 3 More Items"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/playfairdisplay"
+                    android:textStyle="bold"
+                    />
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:layout_marginStart="5dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/order_date"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="Sunday 29-09-2020 21:57:42"
+                android:layout_gravity="start"
+                android:textSize="18sp"
+                android:fontFamily="@font/walkwayblack"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order No :"
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/walkwayblack"
+                    />
+
+                <TextView
+                    android:id="@+id/order_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="73878943738783"
+                    android:paddingStart="3dp"
+                    android:textColor="#673AB7"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address : "
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/walkwayblack"
+                    />
+
+                <TextView
+                    android:id="@+id/order_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Narikali Patharughat Road,Basahuba,Assam, 784507,India"
+                    android:paddingStart="3dp"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/playfairdisplay"
+                    android:textColor="#1C1B1C"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order Status : "
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/walkwayblack"
+                    />
+
+                <TextView
+                    android:id="@+id/order_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Placed"
+                    android:paddingStart="3dp"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/playfairdisplay"
+                    android:textColor="#3F51B5"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="top|center"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Amount : "
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/walkwayblack"
+                    />
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/ruppee_icn"
+                    android:layout_gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/order_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:text="5000"
+                    android:fontFamily="@font/walkwayblack"
+                    android:paddingStart="3dp"
+                    android:gravity="center"
+                    android:textSize="13sp"
+                    android:textColor="#3F51B5"
+                    />
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_gravity="bottom"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/return_order_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:text="RETURN ORDER"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="#FD1919"
+            />
+
+        <Button
+            android:id="@+id/cancel_order_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:text="CANCEL ORDER"
+            android:visibility="gone"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:backgroundTint="#FD1919"
+            />
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home.AddAddress.AddAddressFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter delivery information"
+            android:textSize="18sp"
+            android:textColor="#516AF6"
+            android:padding="10dp"
+            android:gravity="center"
+            android:fontFamily="@font/playfairdisplay"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/select_current_location_btn"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:text="Current Location"
+                android:backgroundTint="#65B9FB"
+                android:layout_height="50dp"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/recepient_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:met_textColor="#fff"
+            android:hint="Recepient's Name"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            app:met_floatingLabel="highlight"
+            app:met_clearButton="true"
+            app:met_maxCharacters="30"
+            app:met_primaryColor="?colorPrimary"
+            app:met_baseColor="@android:color/white"
+            app:met_singleLineEllipsis="true" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/address_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address"
+            android:layout_margin="10dp"
+            app:met_textColor="#fff"
+            android:textSize="18sp"
+            app:met_floatingLabel="highlight"
+            app:met_maxCharacters="80"
+            app:met_primaryColor="?colorPrimary"
+            app:met_baseColor="@android:color/white"
+            app:met_singleLineEllipsis="true" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/street_address_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Street Address like house no etc"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            app:met_floatingLabel="highlight"
+            app:met_maxCharacters="20"
+            app:met_primaryColor="?colorPrimary"
+            app:met_baseColor="@android:color/white"
+            app:met_textColor="#fff"
+            app:met_singleLineEllipsis="true" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/landmark_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Landmark"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            app:met_floatingLabel="highlight"
+            app:met_maxCharacters="20"
+            app:met_textColor="#fff"
+            app:met_primaryColor="?colorPrimary"
+            app:met_baseColor="@android:color/white"
+            app:met_singleLineEllipsis="true" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/state_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="State"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            app:met_textColor="#fff"
+            app:met_floatingLabel="highlight"
+            app:met_maxCharacters="20"
+            app:met_primaryColor="?colorPrimary"
+            app:met_baseColor="@android:color/white"
+            app:met_singleLineEllipsis="true" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/city_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="City/Town"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            app:met_textColor="#fff"
+            app:met_floatingLabel="highlight"
+            app:met_maxCharacters="20"
+            app:met_primaryColor="?colorPrimary"
+            app:met_baseColor="@android:color/white"
+            app:met_singleLineEllipsis="true" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/pincode_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pincode"
+            app:met_textColor="#fff"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            app:met_floatingLabel="highlight"
+            app:met_maxCharacters="20"
+            app:met_primaryColor="?colorPrimary"
+            app:met_baseColor="@android:color/white"
+            app:met_singleLineEllipsis="true"
+            />
+
+
+        <Button
+            android:id="@+id/save_address_btn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="SAVE ADDRESS"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/walkwayblack"
+            />
+
+    </LinearLayout>
+
+
+</ScrollView>

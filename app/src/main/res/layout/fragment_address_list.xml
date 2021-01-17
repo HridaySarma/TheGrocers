@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home.AdressList.AddressListFragment">
+
+    <TextView
+        android:id="@+id/sya"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SELECT YOUR ADDRESS"
+        android:textColor="#000"
+        android:background="#fff"
+        android:fontFamily="@font/walkwayblack"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:padding="10dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/addresses_rv_list"
+        android:layout_width="match_parent"
+        android:layout_margin="15dp"
+        android:layout_below="@id/sya"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_above="@id/add_new_address_tv"
+        />
+
+    <TextView
+        android:id="@+id/add_new_address_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/proceed_to_checkout_btn"
+        android:padding="10dp"
+        android:textColor="#9941E6"
+        android:textSize="18sp"
+        android:fontFamily="@font/walkwayblack"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:text="Add New Delivery Address"
+        />
+
+
+    <Button
+        android:id="@+id/proceed_to_checkout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Proceed to Checkout"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_alignParentBottom="true"
+        />
+
+</RelativeLayout>

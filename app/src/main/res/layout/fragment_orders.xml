@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".home.Orders.OrdersFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="My Orders"
+            android:textColor="#fff"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/playfairdisplay"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_order"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/orders_empty_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/orders_anim"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            app:lottie_fileName="empty_cart.json"
+            app:lottie_enableMergePathsForKitKatAndAbove="true"
+            app:lottie_autoPlay="true"
+            android:layout_margin="20dp"
+            />
+
+        <TextView
+            android:id="@+id/txt_empty_cart_orders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/orders_anim"
+            android:text="NO ORDERS"
+            android:textColor="#FF5722"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textStyle="bold"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

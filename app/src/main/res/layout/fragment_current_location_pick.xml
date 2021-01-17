@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home.MAP.CurrentLocationPickFragment">
+
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/mapView_set_current_location_ascl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <ImageView
+        android:id="@+id/reload_btn_imv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/pincodea_icon"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="50dp"
+        />
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="#9000"
+        android:layout_margin="10dp"
+        android:layout_height="150dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/loc_ph_2"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/picked_location_icon"
+                    />
+
+                <TextView
+                    android:id="@+id/address_ascl_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textStyle="italic"
+                    android:textSize="16sp"
+                    android:layout_marginStart="20dp"
+                    android:textColor="#fff"
+                    android:fontFamily="@font/playfairdisplay"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/pincodeTv_ascl_set_loca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/loc_ph_2"
+                android:layout_marginStart="55dp"
+                android:padding="10dp"
+                android:text=""
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:weightSum="2"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/set_current_location_ascl_btn"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="Select Location"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/playfairdisplay"
+                    android:textSize="11sp"
+                    android:background="#2589D8"
+                    />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

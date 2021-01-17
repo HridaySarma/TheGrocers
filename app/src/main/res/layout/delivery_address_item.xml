@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="20dp"
+    android:layout_height="230dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/selected_location_radio_btn"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                />
+
+            <ImageView
+                android:id="@+id/edit_address_imgvw"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/ic_baseline_create_24"
+                />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/userName_di"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="John Doe"
+                android:padding="5dp"
+                android:textSize="16sp"
+                android:letterSpacing="0.1"
+                android:fontFamily="@font/walkwayblack"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/picked_location_icon"
+                    />
+
+                <TextView
+                    android:id="@+id/address_di"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:text="Mazbat, Vill Kharamakha"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    android:letterSpacing="0.1"
+                    android:fontFamily="@font/walkwayblack"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/street_address_address"
+                    />
+
+                <TextView
+                    android:id="@+id/street_address_di"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:text="House No 39"
+                    android:paddingEnd="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    android:letterSpacing="0.1"
+                    android:fontFamily="@font/walkwayblack"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_landscape_24"
+                    />
+
+                <TextView
+                    android:id="@+id/landmark_di"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:text="Railway Station"
+                    android:paddingBottom="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="5dp"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    android:letterSpacing="0.1"
+                    android:fontFamily="@font/walkwayblack"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/pincodea_icon"
+                    />
+
+                <TextView
+                    android:id="@+id/pincode_di"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:text="781001"
+                    android:paddingBottom="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="5dp"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    android:letterSpacing="0.1"
+                    android:fontFamily="@font/walkwayblack"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/mapbox_ic_place"
+                    />
+
+                <TextView
+                    android:id="@+id/city_di"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:text="City"
+                    android:paddingBottom="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="5dp"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    android:letterSpacing="0.1"
+                    android:fontFamily="@font/walkwayblack"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/state_icon"
+                    />
+
+                <TextView
+                    android:id="@+id/state_di"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:text="ASSAM"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    android:letterSpacing="0.1"
+                    android:fontFamily="@font/walkwayblack"
+                    />
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

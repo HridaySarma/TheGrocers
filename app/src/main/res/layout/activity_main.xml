@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#fff"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/splash_screen"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_height="match_parent"
+        android:src="@drawable/logo"
+        android:scaleType="fitCenter"
+        />
+
+    <LinearLayout
+        android:id="@+id/pager_layout"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:weightSum="7"
+        android:layout_height="match_parent">
+
+        <com.asksira.loopingviewpager.LoopingViewPager
+            android:id="@+id/onboardingPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5.5"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            />
+
+        <com.rd.PageIndicatorView
+            android:id="@+id/pager_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            app:piv_viewPager="@+id/onboardingPager"
+            app:piv_animationDuration="300"
+            app:piv_animationType="worm"
+            app:piv_radius="5dp"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="bottom|center"
+            app:piv_padding="5dp"
+            app:piv_selectedColor="#E80F0F"
+            app:piv_strokeWidth="2dp"
+            app:piv_unselectedColor="#fff"
+            app:piv_interactiveAnimation="true"
+            app:piv_dynamicCount="true"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            >
+
+            <Button
+                android:id="@+id/nextBtn_onboarding"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:text="NEXT"
+                android:backgroundTint="@color/pitchColor"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:fontFamily="@font/mavenpro"
+                android:layout_centerInParent="true"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

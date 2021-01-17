@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="5dp"
+    android:backgroundTint="#fff"
+    app:cardCornerRadius="5dp"
+    android:layout_margin="10dp"
+    android:layout_height="230dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_height="match_parent">
+
+      <ImageView
+          android:id="@+id/any_prod_image"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="3"
+          />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/any_prod_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="NIKE MEN FASHION SHOES THAT GOES AROUND THE LEG"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#9F1515"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/any_prod_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5000"
+                android:drawableStart="@drawable/rupeeroundsmall"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_gravity="center"
+                android:drawablePadding="10dp"
+                android:padding="5dp"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:id="@+id/any_prod_main_cat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MEN'S FASHION"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_gravity="center"
+                android:drawablePadding="10dp"
+                android:padding="5dp"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/any_prod_sub_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HOODIES &amp; SWEATSHIRTS"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_gravity="center"
+                android:drawablePadding="10dp"
+                android:padding="5dp"
+                android:textSize="14sp"
+                />
+
+            <Button
+                android:id="@+id/any_prod_view_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Product"
+                android:textSize="12sp"
+                android:layout_gravity="center"
+
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>
