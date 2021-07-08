@@ -6,9 +6,8 @@ public class ReviewModel {
     private String description,phone;
     private float rating;
     private UserModel userModel;
-    private int ratingCount;
 
-    public ReviewModel(int day, int month, int year, String description, String phone, float rating, UserModel userModel, int ratingCount) {
+    public ReviewModel(int day, int month, int year, String description, String phone, float rating, UserModel userModel) {
         this.day = day;
         this.month = month;
         this.year = year;
@@ -16,7 +15,6 @@ public class ReviewModel {
         this.phone = phone;
         this.rating = rating;
         this.userModel = userModel;
-        this.ratingCount = ratingCount;
     }
 
     public ReviewModel() {
@@ -78,11 +76,4 @@ public class ReviewModel {
         this.userModel = userModel;
     }
 
-    public int getRatingCount() {
-        return ratingCount;
-    }
-
-    public void setRatingCount(int ratingCount) {
-        this.ratingCount = ratingCount;
-    }
 }
