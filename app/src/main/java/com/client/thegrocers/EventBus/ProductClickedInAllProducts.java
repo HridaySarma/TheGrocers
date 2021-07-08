@@ -1,6 +1,7 @@
 package com.client.thegrocers.EventBus;
 
-import com.yuvraj.thegroceryapp.Model.SingletonProductModel;
+
+import com.client.thegrocers.Model.SingletonProductModel;
 
 public class ProductClickedInAllProducts {
     boolean success;

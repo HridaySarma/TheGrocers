@@ -12,10 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.yuvraj.thegroceryapp.Callbacks.IItemClick;
-import com.yuvraj.thegroceryapp.EventBus.PopularCategoryClick;
-import com.yuvraj.thegroceryapp.Model.PopularCategoriesModel;
-import com.yuvraj.thegroceryapp.R;
+import com.client.thegrocers.Callbacks.IItemClick;
+import com.client.thegrocers.EventBus.PopularCategoryClick;
+import com.client.thegrocers.Model.PopularCategoriesModel;
+import com.client.thegrocers.R;
 
 import org.greenrobot.eventbus.EventBus;
 

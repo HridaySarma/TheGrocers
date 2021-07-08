@@ -1,6 +1,7 @@
 package com.client.thegrocers.Callbacks;
 
-import com.yuvraj.thegroceryapp.Model.Order;
+
+import com.client.thegrocers.Model.Order;
 
 public interface ILoadTimeFromFirebaseListener {
     void onLoadTImeSuccess(Order order, long estimateTimeInMs);

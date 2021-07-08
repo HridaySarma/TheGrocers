@@ -11,11 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.yuvraj.thegroceryapp.Callbacks.IItemClick;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.EventBus.CategoryClicked;
-import com.yuvraj.thegroceryapp.Model.CategoryModel;
-import com.yuvraj.thegroceryapp.R;
+import com.client.thegrocers.Callbacks.IItemClick;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.EventBus.CategoryClicked;
+import com.client.thegrocers.Model.CategoryModel;
+import com.client.thegrocers.R;
 
 import org.greenrobot.eventbus.EventBus;
 

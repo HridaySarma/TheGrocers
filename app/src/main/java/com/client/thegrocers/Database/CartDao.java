@@ -25,11 +25,6 @@ public interface CartDao {
     @Query("SELECT SUM((productSellingPrice)* productQuantity) FROM Cart WHERE uid=:uid")
     Single<Double> sumPriceInCart(String uid);
 
-    @Query("SELECT SUM((height)*productQuantity) FROM Cart WHERE uid=:uid")
-    Single<Double> sumHeightInCart(String uid);
-
-    @Query("SELECT SUM((packageSize)*productQuantity) FROM Cart WHERE uid=:uid")
-    Single<Double> sumWeightInCart(String uid);
 
     @Query("SELECT * FROM Cart WHERE productId=:productId AND uid=:uid")
     Single<CartItem> getItemInCart(String productId, String uid);

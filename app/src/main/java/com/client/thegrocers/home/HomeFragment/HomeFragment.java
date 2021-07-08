@@ -1,6 +1,7 @@
 package com.client.thegrocers.home.HomeFragment;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -36,6 +37,19 @@ import androidx.recyclerview.widget.SnapHelper;
 
 import com.asksira.loopingviewpager.LoopingViewPager;
 import com.bumptech.glide.Glide;
+import com.client.thegrocers.Adapters.BannerPagerAdapter;
+import com.client.thegrocers.Adapters.BestDealsAdapter;
+import com.client.thegrocers.Adapters.CategoryAdapter;
+import com.client.thegrocers.Adapters.PopularCategoriesAdapter;
+import com.client.thegrocers.Callbacks.ICurrentFragment;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.CreditsActivity;
+import com.client.thegrocers.Model.BannerModel;
+import com.client.thegrocers.Model.BestDealModel;
+import com.client.thegrocers.Model.CategoryModel;
+import com.client.thegrocers.Model.PopularCategoriesModel;
+import com.client.thegrocers.R;
+import com.client.thegrocers.home.HomeViewModel;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -60,18 +74,6 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 import com.main.zoomingrecyclerview.ZoomingRecyclerView;
 import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.yuvraj.thegroceryapp.Adapters.BannerPagerAdapter;
-import com.yuvraj.thegroceryapp.Adapters.BestDealsAdapter;
-import com.yuvraj.thegroceryapp.Adapters.CategoryAdapter;
-import com.yuvraj.thegroceryapp.Adapters.PopularCategoriesAdapter;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.CreditsActivity;
-import com.yuvraj.thegroceryapp.Model.BannerModel;
-import com.yuvraj.thegroceryapp.Model.BestDealModel;
-import com.yuvraj.thegroceryapp.Model.CategoryModel;
-import com.yuvraj.thegroceryapp.Model.PopularCategoriesModel;
-import com.yuvraj.thegroceryapp.R;
-import com.yuvraj.thegroceryapp.home.HomeViewModel;
 
 import java.io.IOException;
 import java.util.List;
@@ -101,7 +103,7 @@ public class HomeFragment extends Fragment implements PermissionListener, Locati
     @BindView(R.id.popular_categories_recycler_view)
     RecyclerView popularCategoriesRv;
     private LinearLayoutManager linearLayoutManager ;
-    private  PopularCategoriesAdapter  horizontalAdapter;
+    private PopularCategoriesAdapter horizontalAdapter;
     private SnapHelper snapHelper = new LinearSnapHelper();
     @BindView(R.id.location_tv)
     TextView locationTextView;
@@ -119,21 +121,10 @@ public class HomeFragment extends Fragment implements PermissionListener, Locati
     Button view_credits_btn;
     @OnClick(R.id.view_credits_btn)
     public void onViewCreditsClicked(){
-        startActivity(new Intent(getContext(), com.yuvraj.thegroceryapp.CreditsActivity.class));
+        startActivity(new Intent(getContext(), CreditsActivity.class));
     }
     /// Location ///
 
-//    final int duration = 20;
-//    final int pixelsToMove = 5;
-//    private final Handler mHandler = new Handler(Looper.getMainLooper());
-//    private final Runnable SCROLLING_RUNNABLE = new Runnable() {
-//
-//        @Override
-//        public void run() {
-//            bestDealsRecyclerView.smoothScrollBy(pixelsToMove, 0);
-//            mHandler.postDelayed(this, duration);
-//        }
-//    };
 
 
     @Override
@@ -143,6 +134,8 @@ public class HomeFragment extends Fragment implements PermissionListener, Locati
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         Common.CurrentFragment = "Home";
+        ICurrentFragment iCurrentFragment  = (ICurrentFragment) getContext();
+        iCurrentFragment.currentFragment("Home");
         unbinder = ButterKnife.bind(this,view);
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -217,12 +210,9 @@ public class HomeFragment extends Fragment implements PermissionListener, Locati
     private void initCategories() {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3);
         categoriesRecyclerView.setLayoutManager(gridLayoutManager);
-        homeViewModel.getMutableLiveDataCategories().observe(getViewLifecycleOwner(), new Observer<List<CategoryModel>>() {
-            @Override
-            public void onChanged(List<CategoryModel> categoryModelList) {
-                CategoryAdapter categoryAdapter = new CategoryAdapter(getContext(),categoryModelList);
-                categoriesRecyclerView.setAdapter(categoryAdapter);
-            }
+        homeViewModel.getMutableLiveDataCategories().observe(getViewLifecycleOwner(), categoryModelList -> {
+            CategoryAdapter categoryAdapter = new CategoryAdapter(getContext(),categoryModelList);
+            categoriesRecyclerView.setAdapter(categoryAdapter);
         });
     }
 
@@ -241,29 +231,6 @@ public class HomeFragment extends Fragment implements PermissionListener, Locati
                 bestDealsRecyclerView.smoothScrollToPosition(bestDealModelList.size()/2);
                 snapHelper2.attachToRecyclerView(bestDealsRecyclerView);
                 bestDealsRecyclerView.setNestedScrollingEnabled(false);
-
-
-//
-//                bestDealsRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//                    @Override
-//                    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                        super.onScrolled(recyclerView, dx, dy);
-//                        int lastItem = layoutManager.findLastCompletelyVisibleItemPosition();
-//                        if(lastItem == layoutManager.getItemCount()-1){
-//                            mHandler.removeCallbacks(SCROLLING_RUNNABLE);
-//                            Handler postHandler = new Handler();
-//                            postHandler.postDelayed(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    recyclerView.setAdapter(null);
-//                                    recyclerView.setAdapter(adapter);
-//                                    mHandler.postDelayed(SCROLLING_RUNNABLE, 2000);
-//                                }
-//                            }, 2000);
-//                        }
-//                    }
-//                });
-//                mHandler.postDelayed(SCROLLING_RUNNABLE, 2000);
 
             }
         });
@@ -353,6 +320,7 @@ public class HomeFragment extends Fragment implements PermissionListener, Locati
         });
     }
 
+    @SuppressLint("MissingPermission")
     private void getLocation() {
         locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

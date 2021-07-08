@@ -10,10 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.yuvraj.thegroceryapp.Callbacks.IAddressItemClick;
-import com.yuvraj.thegroceryapp.EventBus.AddressSelected;
-import com.yuvraj.thegroceryapp.Model.AddressModel;
-import com.yuvraj.thegroceryapp.R;
+import com.client.thegrocers.Callbacks.IAddressItemClick;
+import com.client.thegrocers.EventBus.AddressSelected;
+import com.client.thegrocers.Model.AddressModel;
+import com.client.thegrocers.R;
 
 import org.greenrobot.eventbus.EventBus;
 

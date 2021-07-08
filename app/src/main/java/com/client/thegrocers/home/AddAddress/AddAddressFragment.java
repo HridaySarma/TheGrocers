@@ -12,16 +12,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.client.thegrocers.Callbacks.ICurrentFragment;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.EventBus.CurrentLocationClickedToGetAddress;
+import com.client.thegrocers.EventBus.LocationAddedNowBackToAddressList;
+import com.client.thegrocers.Model.AddressModel;
+import com.client.thegrocers.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.EventBus.CurrentLocationClickedToGetAddress;
-import com.yuvraj.thegroceryapp.EventBus.LocationAddedNowBackToAddressList;
-import com.yuvraj.thegroceryapp.Model.AddressModel;
-import com.yuvraj.thegroceryapp.R;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -63,6 +64,8 @@ public class AddAddressFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_address, container, false);
         unbinder = ButterKnife.bind(this,view);
         Common.CurrentFragment = "AddAddress";
+        ICurrentFragment iCurrentFragment  = (ICurrentFragment) getContext();
+        iCurrentFragment.currentFragment("Other");
         if (Common.AddressToBeSelected != null){
             initViews(Common.AddressToBeSelected);
         }else {
@@ -98,7 +101,7 @@ public class AddAddressFragment extends Fragment {
 
     private void SaveTheAddress() {
         dialog.show();
-        Common.AddressToBeSelected = null;
+
         AddressModel addressModel = new AddressModel();
         addressModel.setAddress(address_edt.getText().toString());
         addressModel.setLandmark(landmark_edt.getText().toString());
@@ -106,7 +109,10 @@ public class AddAddressFragment extends Fragment {
         addressModel.setStreetAddress(street_address_edt.getText().toString());
         addressModel.setPincode(pincode_edt.getText().toString());
         addressModel.setState(state_edt.getText().toString());
+        addressModel.setLatitude(Common.AddressToBeSelected.getLatitude());
+        addressModel.setLongitude(Common.AddressToBeSelected.getLongitude());
         addressModel.setCity(city_name_edt.getText().toString());
+        Common.AddressToBeSelected = null;
         Random random = new Random();
         int i = random.nextInt(999999999);
 

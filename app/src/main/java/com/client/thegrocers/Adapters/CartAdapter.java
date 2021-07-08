@@ -14,14 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
-import com.yuvraj.thegroceryapp.Callbacks.IItemClick;
-import com.yuvraj.thegroceryapp.Database.CartDataSource;
-import com.yuvraj.thegroceryapp.Database.CartDatabase;
-import com.yuvraj.thegroceryapp.Database.CartItem;
-import com.yuvraj.thegroceryapp.Database.LocalCartDataSource;
-import com.yuvraj.thegroceryapp.EventBus.DeleteCartItem;
-import com.yuvraj.thegroceryapp.EventBus.UpdateItemInCart;
-import com.yuvraj.thegroceryapp.R;
+import com.client.thegrocers.Callbacks.IItemClick;
+import com.client.thegrocers.Database.CartDataSource;
+import com.client.thegrocers.Database.CartDatabase;
+import com.client.thegrocers.Database.CartItem;
+import com.client.thegrocers.Database.LocalCartDataSource;
+import com.client.thegrocers.EventBus.DeleteCartItem;
+import com.client.thegrocers.EventBus.UpdateItemInCart;
+import com.client.thegrocers.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -38,6 +39,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     List<CartItem> cartItemList;
     private CompositeDisposable compositeDisposable;
     private CartDataSource cartDataSource;
+    private int quanty;
 
     public CartAdapter(Context context, List<CartItem> cartItemList) {
         this.context = context;
@@ -61,12 +63,27 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 .append(cartItemList.get(position).getProductPrice()));
         holder.txt_product_price.setPaintFlags(holder.txt_product_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         holder.txt_product_selling_price.setText(new StringBuilder("").append(cartItemList.get(position).getProductSellingPrice()));
-        holder.number_button_cart.setNumber(String.valueOf(Integer.parseInt(String.valueOf(cartItemList.get(position).getProductQuantity()))));
-        holder.number_button_cart.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
-            @Override
-            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
-                cartItemList.get(position).setProductQuantity(newValue);
+        quanty = cartItemList.get(position).getProductQuantity();
+        holder.qtyTv.setText(String.valueOf(quanty));
+        holder.incrementBtn.setOnClickListener(v -> {
+            if (quanty <=9){
+                quanty++;
+                holder.qtyTv.setText(String.valueOf(quanty));
+                cartItemList.get(position).setProductQuantity(quanty);
                 EventBus.getDefault().postSticky(new UpdateItemInCart(cartItemList.get(position)));
+            }else {
+                Snackbar.make(v,"Quantity cannot be greater than 10",Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.decrementBtn.setOnClickListener(v -> {
+            if (quanty >1){
+                quanty--;
+                holder.qtyTv.setText(String.valueOf(quanty));
+                cartItemList.get(position).setProductQuantity(quanty);
+                EventBus.getDefault().postSticky(new UpdateItemInCart(cartItemList.get(position)));
+            }else {
+                Snackbar.make(v,"Quantity cannot be greater than 10",Snackbar.LENGTH_SHORT).show();
             }
         });
         holder.deleteCartItemBtn.setOnClickListener(new View.OnClickListener() {
@@ -97,16 +114,27 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         TextView txt_product_selling_price;
         @BindView(R.id.txt_product_name)
         TextView txt_product_name;
-        @BindView(R.id.number_button_cart)
-        ElegantNumberButton number_button_cart;
+
         @BindView(R.id.delete_cart_item)
-        Button deleteCartItemBtn;
+        ImageView deleteCartItemBtn;
         IItemClick categoryClickListener;
+
+        @BindView(R.id.card_add_num_btn)
+        ImageView incrementBtn;
+
+        @BindView(R.id.cart_number_tv)
+        TextView qtyTv;
+
+        @BindView(R.id.cart_decrement_num_btn)
+        ImageView decrementBtn;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             unbinder = ButterKnife.bind(this,itemView);
             deleteCartItemBtn.setOnClickListener(this);
+            decrementBtn.setOnClickListener(this);
+            incrementBtn.setOnClickListener(this);
         }
 
         public void setCategoryClickListener(IItemClick categoryClickListener) {

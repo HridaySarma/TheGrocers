@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    android:backgroundTint="#E214052D"
+    android:layout_height="220dp"
+    app:contentPadding="10dp"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="10dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:weightSum="2"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp">
+
+            <ImageView
+                android:id="@+id/dtpt_image"
+                android:layout_width="match_parent"
+                android:scaleType="fitCenter"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="3dp"
+            android:gravity="center|start"
+            android:layout_height="0dp">
+
+            <TextView
+                android:id="@+id/dtpi_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Suchi"
+                android:textColor="#fff"
+                android:textSize="13.5sp"
+                android:fontFamily="@font/ibmplexsemibold"
+                />
+            <TextView
+                android:id="@+id/dpti_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Suchi"
+                android:paddingTop="5dp"
+                android:textColor="#fff"
+                android:textSize="10sp"
+                android:fontFamily="@font/mavenpro"
+                />
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               <TextView
+                   android:id="@+id/dtpi_price"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Rs 500"
+                   android:fontFamily="@font/mavenpro"
+                   android:textColor="#fff"
+                   android:paddingTop="5dp"
+                   android:textSize="16sp"
+                   />
+
+               <com.google.android.material.floatingactionbutton.FloatingActionButton
+                   android:id="@+id/dtpi_add_to_cart_btn"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:fabSize="mini"
+                   android:layout_marginEnd="-10dp"
+                   android:layout_marginBottom="-10dp"
+                   app:maxImageSize="20dp"
+                    android:src="@drawable/ic_baseline_add_circle_24"
+                   app:fabCustomSize="25dp"
+                   android:layout_alignParentEnd="true"
+                   android:layout_alignParentBottom="true"
+                   android:backgroundTint="#C9FFFFFF"
+                   />
+
+           </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

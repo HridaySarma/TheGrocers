@@ -2,14 +2,16 @@ package com.client.thegrocers.Model;
 
 public class UserModel {
 
-    private String uid, name, lastName, phone, profilePicture;
+    private String uid, name, lastName, phone, profilePicture,email;
 
-    public UserModel(String uid, String name, String lastName, String phone, String profilePicture) {
+
+    public UserModel(String uid, String name, String lastName, String phone, String profilePicture, String email) {
         this.uid = uid;
         this.name = name;
         this.lastName = lastName;
         this.phone = phone;
         this.profilePicture = profilePicture;
+        this.email = email;
     }
 
     public UserModel() {
@@ -53,5 +55,13 @@ public class UserModel {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

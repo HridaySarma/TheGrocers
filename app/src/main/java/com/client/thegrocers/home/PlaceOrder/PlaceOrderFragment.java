@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,23 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.client.thegrocers.Adapters.PlaceOrderAdapter;
+import com.client.thegrocers.Callbacks.ICurrentFragment;
+import com.client.thegrocers.Callbacks.ILoadTimeFromFirebaseListener;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.Database.CartDataSource;
+import com.client.thegrocers.Database.CartDatabase;
+import com.client.thegrocers.Database.CartItem;
+import com.client.thegrocers.Database.LocalCartDataSource;
+import com.client.thegrocers.EventBus.AfterOrderPlaced;
+import com.client.thegrocers.EventBus.CartClearedInPlaceOrder;
+import com.client.thegrocers.EventBus.CounterCartEvent;
+import com.client.thegrocers.EventBus.HideFABCart;
+import com.client.thegrocers.EventBus.UpdateItemInCart;
+import com.client.thegrocers.Model.Order;
+import com.client.thegrocers.Model.ShipCred;
+import com.client.thegrocers.Payment.PaymentGatewayActivity;
+import com.client.thegrocers.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -30,22 +48,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.yuvraj.thegroceryapp.Adapters.PlaceOrderAdapter;
-import com.yuvraj.thegroceryapp.Callbacks.ILoadTimeFromFirebaseListener;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.Database.CartDataSource;
-import com.yuvraj.thegroceryapp.Database.CartDatabase;
-import com.yuvraj.thegroceryapp.Database.CartItem;
-import com.yuvraj.thegroceryapp.Database.LocalCartDataSource;
-import com.yuvraj.thegroceryapp.EventBus.AfterOrderPlaced;
-import com.yuvraj.thegroceryapp.EventBus.CartClearedInPlaceOrder;
-import com.yuvraj.thegroceryapp.EventBus.CounterCartEvent;
-import com.yuvraj.thegroceryapp.EventBus.HideFABCart;
-import com.yuvraj.thegroceryapp.EventBus.UpdateItemInCart;
-import com.yuvraj.thegroceryapp.Model.Order;
-import com.yuvraj.thegroceryapp.Model.ShipCred;
-import com.yuvraj.thegroceryapp.Payment.PaymentGatewayActivity;
-import com.yuvraj.thegroceryapp.R;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -124,6 +126,9 @@ public class PlaceOrderFragment extends Fragment implements ILoadTimeFromFirebas
     @BindView(R.id.no_of_items_tv_po)
     TextView no_of_items_tv;
 
+    @BindView(R.id.edt_special_instruction)
+    EditText edtSpecialInstruction;
+
     private String email,password;
 
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -173,78 +178,28 @@ public class PlaceOrderFragment extends Fragment implements ILoadTimeFromFirebas
                                                @Override
                                                public void onSuccess(Double totalPrice) {
 
-                                                   cartDataSource.sumWeightInCart(Common.currentUser.getUid())
-                                                           .subscribeOn(Schedulers.io())
-                                                           .observeOn(AndroidSchedulers.mainThread())
-                                                           .subscribe(new SingleObserver<Double>() {
-                                                               @Override
-                                                               public void onSubscribe(Disposable d) {
+                                                   Order order = new Order();
+                                                   order.setUserId(Common.currentUser.getUid());
+                                                   order.setUserName(Common.currentUser.getName());
+                                                   order.setUserPhone(Common.currentUser.getPhone());
+                                                   order.setUserEmail(Common.currentUser.getEmail());
+                                                   order.setCartItemList(cartItems);
+                                                   if (totalPrice < 1000){
+                                                       deliveryCharges = "50";
+                                                       order.setTotalPayment(totalPrice + Double.parseDouble(deliveryCharges));
+                                                       order.setFinalPayment(totalPrice + Double.parseDouble(deliveryCharges));
+                                                   }else {
+                                                       order.setTotalPayment(totalPrice);
+                                                       order.setFinalPayment(totalPrice);
+                                                   }
 
-                                                               }
+                                                   order.setDiscount(0);
+                                                   order.setAddress(Common.addressSelectedForDelivery);
+                                                   order.setCod(false);
+                                                   order.setTransactionId("Prepaid");
 
-                                                               @Override
-                                                               public void onSuccess(Double totWeight) {
-                                                                   cartDataSource.sumHeightInCart(Common.currentUser.getUid())
-                                                                           .subscribeOn(Schedulers.io())
-                                                                           .observeOn(AndroidSchedulers.mainThread())
-                                                                           .subscribe(new SingleObserver<Double>() {
-                                                                               @Override
-                                                                               public void onSubscribe(Disposable d) {
-
-                                                                               }
-
-                                                                               @Override
-                                                                               public void onSuccess(Double totalHeight) {
-                                                                                   Order order = new Order();
-                                                                                   order.setUserId(Common.currentUser.getUid());
-                                                                                   order.setUserName(Common.currentUser.getName());
-                                                                                   order.setUserPhone(Common.currentUser.getPhone());
-                                                                                   order.setCartItemList(cartItems);
-                                                                                   if (totalPrice < 1000){
-                                                                                       deliveryCharges = "50";
-                                                                                       order.setTotalPayment(totalPrice + Double.parseDouble(deliveryCharges));
-                                                                                       order.setFinalPayment(totalPrice + Double.parseDouble(deliveryCharges));
-                                                                                   }else {
-                                                                                       order.setTotalPayment(totalPrice);
-                                                                                       order.setFinalPayment(totalPrice);
-                                                                                   }
-
-                                                                                   order.setDiscount(0);
-                                                                                   order.setAddress(Common.addressSelectedForDelivery);
-                                                                                   order.setCod(false);
-                                                                                   order.setTransactionId("Prepaid");
-                                                                                   float acptdBreadth = 1;
-                                                                                   float acpthLength = 1;
-                                                                                   for (int i = 0;i<cartItems.size();i++){
-                                                                                       if (cartItems.get(i).getBreadth() > acptdBreadth){
-                                                                                           acptdBreadth = cartItems.get(i).getBreadth();
-                                                                                       }
-                                                                                   }
-
-                                                                                   for (int i=0;i<cartItems.size() ;i++){
-                                                                                       if (cartItems.get(i).getLength()>acpthLength){
-                                                                                           acpthLength = cartItems.get(i).getLength();
-                                                                                       }
-                                                                                   }
-                                                                                   order.setFinalLength(acpthLength);
-                                                                                   order.setFinalBreadth(acptdBreadth);
-                                                                                   order.setFinalHeight(Float.parseFloat(String.valueOf(totalHeight)));
-                                                                                   order.setFinalWeight(Float.parseFloat(String.valueOf(totWeight)));
-                                                                                   syncLocalTimeWithGlobalTimeForOnlinePayment(order);
-                                                                               }
-
-                                                                               @Override
-                                                                               public void onError(Throwable e) {
-
-                                                                               }
-                                                                           });
-                                                               }
-
-                                                               @Override
-                                                               public void onError(Throwable e) {
-
-                                                               }
-                                                           });
+                                                   order.setSpecialInstructions(edtSpecialInstruction.getText().toString());
+                                                   syncLocalTimeWithGlobalTimeForOnlinePayment(order);
 
                                                }
                                                @Override
@@ -302,82 +257,31 @@ public class PlaceOrderFragment extends Fragment implements ILoadTimeFromFirebas
 
                                                @Override
                                                public void onSuccess(Double totalPrice) {
-                                                   cartDataSource.sumWeightInCart(Common.currentUser.getUid())
-                                                           .subscribeOn(Schedulers.io())
-                                                           .observeOn(AndroidSchedulers.mainThread())
-                                                           .subscribe(new SingleObserver<Double>() {
-                                                               @Override
-                                                               public void onSubscribe(Disposable d) {
+                                                   Order order = new Order();
+                                                   order.setUserId(Common.currentUser.getUid());
+                                                   order.setUserName(Common.currentUser.getName());
+                                                   order.setUserPhone(Common.currentUser.getPhone());
+                                                   order.setCartItemList(cartItems);
+                                                   if (totalPrice < 1000){
+                                                       deliveryCharges = "50";
+                                                       order.setTotalPayment(totalPrice + Double.parseDouble(deliveryCharges));
+                                                       order.setFinalPayment(totalPrice + Double.parseDouble(deliveryCharges));
+                                                   }else {
+                                                       order.setTotalPayment(totalPrice);
+                                                       order.setFinalPayment(totalPrice);
+                                                   }
 
-                                                               }
 
-                                                               @Override
-                                                               public void onSuccess(Double totWeight) {
-                                                                   cartDataSource.sumHeightInCart(Common.currentUser.getUid())
-                                                                           .subscribeOn(Schedulers.io())
-                                                                           .observeOn(AndroidSchedulers.mainThread())
-                                                                           .subscribe(new SingleObserver<Double>() {
-                                                                               @Override
-                                                                               public void onSubscribe(Disposable d) {
+                                                   if (!edtSpecialInstruction.getText().toString().equals("")){
+                                                       order.setSpecialInstructions(edtSpecialInstruction.getText().toString());
+                                                   }
 
-                                                                               }
-
-                                                                               @Override
-                                                                               public void onSuccess(Double totalHeight) {
-
-                                                                                   Order order = new Order();
-                                                                                   order.setUserId(Common.currentUser.getUid());
-                                                                                   order.setUserName(Common.currentUser.getName());
-                                                                                   order.setUserPhone(Common.currentUser.getPhone());
-                                                                                   order.setCartItemList(cartItems);
-                                                                                   if (totalPrice < 1000){
-                                                                                       deliveryCharges = "50";
-                                                                                       order.setTotalPayment(totalPrice + Double.parseDouble(deliveryCharges));
-                                                                                       order.setFinalPayment(totalPrice + Double.parseDouble(deliveryCharges));
-                                                                                   }else {
-                                                                                       order.setTotalPayment(totalPrice);
-                                                                                       order.setFinalPayment(totalPrice);
-                                                                                   }
-
-                                                                                   float acptdBreadth = 1;
-                                                                                   float acpthLength = 1;
-                                                                                   for (int i = 0;i<cartItems.size();i++){
-                                                                                       if (cartItems.get(i).getBreadth() > acptdBreadth){
-                                                                                           acptdBreadth = cartItems.get(i).getBreadth();
-                                                                                       }
-                                                                                   }
-
-                                                                                   for (int i=0;i<cartItems.size() ;i++){
-                                                                                       if (cartItems.get(i).getLength()>acpthLength){
-                                                                                           acpthLength = cartItems.get(i).getLength();
-                                                                                       }
-                                                                                   }
-                                                                                   order.setFinalLength(acpthLength);
-                                                                                   order.setFinalBreadth(acptdBreadth);
-                                                                                   order.setFinalHeight(Float.parseFloat(String.valueOf(totalHeight)));
-                                                                                   order.setFinalWeight(Float.parseFloat(String.valueOf(totWeight)));
-
-                                                                                   order.setDiscount(0);
-                                                                                   order.setAddress(Common.addressSelectedForDelivery);
-                                                                                   order.setCod(true);
-                                                                                   order.setTransactionId("Cash On Delivery");
-                                                                                   Common.orderPlacedViaCod = order;
-                                                                                   syncLocalTimeWithGlobalTime(order);
-
-                                                                               }
-
-                                                                               @Override
-                                                                               public void onError(Throwable e) {
-
-                                                                               }
-                                                                           });
-                                                               }
-
-                                                               @Override
-                                                               public void onError(Throwable e) {
-
-                                                               }
-                                                           });
+                                                   order.setDiscount(0);
+                                                   order.setAddress(Common.addressSelectedForDelivery);
+                                                   order.setCod(true);
+                                                   order.setTransactionId("Cash On Delivery");
+                                                   Common.orderPlacedViaCod = order;
+                                                   syncLocalTimeWithGlobalTime(order);
                                                }
 
 
@@ -422,6 +326,8 @@ public class PlaceOrderFragment extends Fragment implements ILoadTimeFromFirebas
         View view = inflater.inflate(R.layout.fragment_place_order, container, false);
         unbinder = ButterKnife.bind(this,view);
         Common.CurrentFragment = "PlaceOrder";
+        ICurrentFragment iCurrentFragment  = (ICurrentFragment) getContext();
+        iCurrentFragment.currentFragment("Other");
         listener = this;
         initViews();
         return view;
@@ -452,7 +358,7 @@ public class PlaceOrderFragment extends Fragment implements ILoadTimeFromFirebas
 
     private void writeOrderToFirebase(Order order) {
         FirebaseDatabase.getInstance()
-                .getReference(Common.ORDER_REF)
+                .getReference(Common.ONGOING_ORDERS_REF)
                 .child(Common.createOrderNumber())
                 .setValue(order)
                 .addOnFailureListener(new OnFailureListener() {
@@ -474,26 +380,9 @@ public class PlaceOrderFragment extends Fragment implements ILoadTimeFromFirebas
 
                             @Override
                             public void onSuccess(Integer integer) {
-                                FirebaseDatabase.getInstance().getReference("ShiproketCred")
-                                        .addListenerForSingleValueEvent(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                for (DataSnapshot item :snapshot.getChildren()){
-                                                    ShipCred cred = item.getValue(ShipCred.class);
-                                                    email = cred.getEmail();
-                                                    password = cred.getPassword();
-                                                }
-                                                if (email!= null && password != null){
-                                                    new SendOrderToShipRocket().execute();
-                                                }
-                                            }
-
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError error) {
-
-                                            }
-                                        });
-
+                                placingOrderDialog.dismiss();
+                                EventBus.getDefault().postSticky(new AfterOrderPlaced(true));
+                                EventBus.getDefault().postSticky(new CounterCartEvent(true));
                             }
 
                             @Override
@@ -607,160 +496,159 @@ public class PlaceOrderFragment extends Fragment implements ILoadTimeFromFirebas
                 }  );
     }
 
-    private  class SendOrderToShipRocket extends AsyncTask<Void,Void,Void>{
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            JSONObject jsonObjectServ = new JSONObject();
-            try {
-                jsonObjectServ.put("email",email);
-                jsonObjectServ.put("password",password);
-                String token ;
-                OkHttpClient client = new OkHttpClient().newBuilder()
-                        .build();
-                MediaType mediaType = MediaType.parse("application/json");
-                RequestBody body = RequestBody.create(jsonObjectServ.toString(),mediaType);
-                Request request = new Request.Builder()
-                        .url("https://apiv2.shiprocket.in/v1/external/auth/login")
-                        .method("POST", body)
-                        .addHeader("Content-Type", "application/json")
-                        .build();
-                try {
-                    Response response = client.newCall(request).execute();
-                    String resStr = response.body().string();
-                    JSONObject json = new JSONObject(resStr);
-                    token = json.getString("token");
-                    Log.d("DATTFDGDHKSHVJD",json.toString());
-
-                    if (token != null){
-                        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-
-                        int currentYear = calendar.get(Calendar.YEAR);
-                        int currentMonth = calendar.get(Calendar.MONTH ) + 1;
-                        if (currentMonth <=9)
-                            currentMonth = Integer.parseInt("0"+currentMonth);
-
-                        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
-                        if (currentDay <=9)
-                            currentDay = Integer.parseInt("0" + currentDay);
-                        String todaysDate = currentDay+"-"+currentMonth+"-"+currentYear;
-                        JSONObject jsonObject = new JSONObject();
-                        Random random = new Random();
-                        int theorderId = random.nextInt(999999);
-                        String orderId = String.valueOf(theorderId);
-                        try {
-                            jsonObject.put("order_id", orderId);
-                            jsonObject.put("order_date", todaysDate);
-                            jsonObject.put("pickup_location", "Store");
-                            jsonObject.put("channel_id", "");
-                            jsonObject.put("comment", "");
-                            jsonObject.put("reseller_name", "Yuvraj Grocery");
-                            jsonObject.put("company_name", "");
-                            jsonObject.put("billing_customer_name", Common.orderPlacedViaCod.getUserName());
-                            jsonObject.put("billing_last_name", Common.currentUser.getLastName());
-                            jsonObject.put("billing_address", Common.orderPlacedViaCod.getAddress().getAddress());
-                            jsonObject.put("billing_address_2", Common.orderPlacedViaCod.getAddress().getStreetAddress());
-                            jsonObject.put("billing_isd_code", "");
-                            jsonObject.put("billing_city", Common.orderPlacedViaCod.getAddress().getCity());
-                            jsonObject.put("billing_pincode", Common.orderPlacedViaCod.getAddress().getPincode());
-                            jsonObject.put("billing_state", Common.orderPlacedViaCod.getAddress().getState());
-                            jsonObject.put("billing_country", "India");
-                            jsonObject.put("billing_email", "yuvrajgrocery@gmail.com");
-                            String subS = Common.orderPlacedViaCod.getUserPhone().substring(Common.orderPlacedViaCod.getUserPhone().length() - 10);
-                            jsonObject.put("billing_phone", subS);
-                            jsonObject.put("billing_alternate_phone", "");
-                            jsonObject.put("shipping_is_billing", "1");
-                            jsonObject.put("shipping_customer_name", "");
-                            jsonObject.put("shipping_last_name", "");
-                            jsonObject.put("shipping_address", "");
-                            jsonObject.put("shipping_address_2", "");
-                            jsonObject.put("shipping_city", "");
-                            jsonObject.put("shipping_pincode", "");
-                            jsonObject.put("shipping_country", "");
-                            jsonObject.put("shipping_state", "");
-                            jsonObject.put("shipping_email", "");
-                            jsonObject.put("shipping_phone", "");
-                            JSONArray jsonArray = new JSONArray();
-
-                            for (int i = 0;i<Common.orderPlacedViaCod.getCartItemList().size() ; i++){
-                                Random random1 = new Random();
-                                String randSKu = String.valueOf(random1.nextInt(99999) +i);
-                                JSONObject orderJson = new JSONObject();
-                                orderJson.put("name",Common.orderPlacedViaCod.getCartItemList().get(i).getProductName());
-                                orderJson.put("sku",randSKu+Common.orderPlacedViaCod.getCartItemList().get(i).getProductId());
-                                orderJson.put("units",Common.orderPlacedViaCod.getCartItemList().get(i).getProductQuantity());
-                                orderJson.put("selling_price",Common.orderPlacedViaCod.getCartItemList().get(i).getProductSellingPrice());
-                                orderJson.put("discount","0");
-                                orderJson.put("tax","0");
-                                orderJson.put("hsn","");
-                                jsonArray.put(orderJson);
-                            }
-                            jsonObject.put("order_items", jsonArray);
-                            jsonObject.put("payment_method", "COD");
-                            jsonObject.put("giftwrap_charges", "0");
-                            jsonObject.put("transaction_charges", "0");
-                            jsonObject.put("total_discount", "0");
-                            jsonObject.put("sub_total", Common.orderPlacedViaCod.getTotalPayment());
-                            jsonObject.put("length", String.valueOf(Common.orderPlacedViaCod.getFinalLength()));
-                            jsonObject.put("breadth", String.valueOf(Common.orderPlacedViaCod.getFinalBreadth()));
-                            jsonObject.put("height", String.valueOf(Common.orderPlacedViaCod.getFinalHeight()));
-                            jsonObject.put("weight", String.valueOf(Common.orderPlacedViaCod.getFinalWeight()/1000f));
-                            jsonObject.put("ewaybill_no", "");
-                            jsonObject.put("customer_gstin", "");
-
-                            Log.d("THE OBJECT",jsonObject.toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        OkHttpClient client2 = new OkHttpClient().newBuilder()
-                                .build();
-                        MediaType mediaType2 = MediaType.parse("application/json");
-                        RequestBody body2 = RequestBody.create(jsonObject.toString(),mediaType2);
-                        Request request2 = new Request.Builder()
-                                .url("https://apiv2.shiprocket.in/v1/external/orders/create/adhoc")
-                                .method("POST", body2)
-                                .addHeader("Content-Type", "application/json")
-                                .addHeader("Authorization", "Bearer "+token)
-                                .build();
-                        try {
-                            Response response2= client2.newCall(request2).execute();
-                            String resStr2 = response2.body().string();
-                            JSONObject json2 = new JSONObject(resStr2);
-                            Log.d("DATTFDGDHKSHVJD",json2.toString());
-                            if (json2 != null){
-                                EventBus.getDefault().postSticky(new AfterOrderPlaced(true));
-                                EventBus.getDefault().postSticky(new CounterCartEvent(true));
-                            }
-
-                        } catch (IOException | JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        ///// Send Order To ShipRocket /////
-                    }
-                } catch (IOException | JSONException e) {
-                    e.printStackTrace();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            placingOrderDialog.dismiss();
-        }
-    }
+//    private  class SendOrderToShipRocket extends AsyncTask<Void,Void,Void>{
+//
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected Void doInBackground(Void... voids) {
+//            JSONObject jsonObjectServ = new JSONObject();
+//            try {
+//                jsonObjectServ.put("email",email);
+//                jsonObjectServ.put("password",password);
+//                String token ;
+//                OkHttpClient client = new OkHttpClient().newBuilder()
+//                        .build();
+//                MediaType mediaType = MediaType.parse("application/json");
+//                RequestBody body = RequestBody.create(jsonObjectServ.toString(),mediaType);
+//                Request request = new Request.Builder()
+//                        .url("https://apiv2.shiprocket.in/v1/external/auth/login")
+//                        .method("POST", body)
+//                        .addHeader("Content-Type", "application/json")
+//                        .build();
+//                try {
+//                    Response response = client.newCall(request).execute();
+//                    String resStr = response.body().string();
+//                    JSONObject json = new JSONObject(resStr);
+//                    token = json.getString("token");
+//                    Log.d("DATTFDGDHKSHVJD",json.toString());
+//
+//                    if (token != null){
+//                        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+//
+//                        int currentYear = calendar.get(Calendar.YEAR);
+//                        int currentMonth = calendar.get(Calendar.MONTH ) + 1;
+//                        if (currentMonth <=9)
+//                            currentMonth = Integer.parseInt("0"+currentMonth);
+//
+//                        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+//                        if (currentDay <=9)
+//                            currentDay = Integer.parseInt("0" + currentDay);
+//                        String todaysDate = currentDay+"-"+currentMonth+"-"+currentYear;
+//                        JSONObject jsonObject = new JSONObject();
+//                        Random random = new Random();
+//                        int theorderId = random.nextInt(999999);
+//                        String orderId = String.valueOf(theorderId);
+//                        try {
+//                            jsonObject.put("order_id", orderId);
+//                            jsonObject.put("order_date", todaysDate);
+//                            jsonObject.put("pickup_location", "Store");
+//                            jsonObject.put("channel_id", "");
+//                            jsonObject.put("comment", "");
+//                            jsonObject.put("reseller_name", "Yuvraj Grocery");
+//                            jsonObject.put("company_name", "");
+//                            jsonObject.put("billing_customer_name", Common.orderPlacedViaCod.getUserName());
+//                            jsonObject.put("billing_last_name", Common.currentUser.getLastName());
+//                            jsonObject.put("billing_address", Common.orderPlacedViaCod.getAddress().getAddress());
+//                            jsonObject.put("billing_address_2", Common.orderPlacedViaCod.getAddress().getStreetAddress());
+//                            jsonObject.put("billing_isd_code", "");
+//                            jsonObject.put("billing_city", Common.orderPlacedViaCod.getAddress().getCity());
+//                            jsonObject.put("billing_pincode", Common.orderPlacedViaCod.getAddress().getPincode());
+//                            jsonObject.put("billing_state", Common.orderPlacedViaCod.getAddress().getState());
+//                            jsonObject.put("billing_country", "India");
+//                            jsonObject.put("billing_email", "yuvrajgrocery@gmail.com");
+//                            String subS = Common.orderPlacedViaCod.getUserPhone().substring(Common.orderPlacedViaCod.getUserPhone().length() - 10);
+//                            jsonObject.put("billing_phone", subS);
+//                            jsonObject.put("billing_alternate_phone", "");
+//                            jsonObject.put("shipping_is_billing", "1");
+//                            jsonObject.put("shipping_customer_name", "");
+//                            jsonObject.put("shipping_last_name", "");
+//                            jsonObject.put("shipping_address", "");
+//                            jsonObject.put("shipping_address_2", "");
+//                            jsonObject.put("shipping_city", "");
+//                            jsonObject.put("shipping_pincode", "");
+//                            jsonObject.put("shipping_country", "");
+//                            jsonObject.put("shipping_state", "");
+//                            jsonObject.put("shipping_email", "");
+//                            jsonObject.put("shipping_phone", "");
+//                            JSONArray jsonArray = new JSONArray();
+//
+//                            for (int i = 0;i<Common.orderPlacedViaCod.getCartItemList().size() ; i++){
+//                                Random random1 = new Random();
+//                                String randSKu = String.valueOf(random1.nextInt(99999) +i);
+//                                JSONObject orderJson = new JSONObject();
+//                                orderJson.put("name",Common.orderPlacedViaCod.getCartItemList().get(i).getProductName());
+//                                orderJson.put("sku",randSKu+Common.orderPlacedViaCod.getCartItemList().get(i).getProductId());
+//                                orderJson.put("units",Common.orderPlacedViaCod.getCartItemList().get(i).getProductQuantity());
+//                                orderJson.put("selling_price",Common.orderPlacedViaCod.getCartItemList().get(i).getProductSellingPrice());
+//                                orderJson.put("discount","0");
+//                                orderJson.put("tax","0");
+//                                orderJson.put("hsn","");
+//                                jsonArray.put(orderJson);
+//                            }
+//                            jsonObject.put("order_items", jsonArray);
+//                            jsonObject.put("payment_method", "COD");
+//                            jsonObject.put("giftwrap_charges", "0");
+//                            jsonObject.put("transaction_charges", "0");
+//                            jsonObject.put("total_discount", "0");
+//                            jsonObject.put("sub_total", Common.orderPlacedViaCod.getTotalPayment());
+//                            jsonObject.put("length", String.valueOf(Common.orderPlacedViaCod.getFinalLength()));
+//                            jsonObject.put("breadth", String.valueOf(Common.orderPlacedViaCod.getFinalBreadth()));
+//                            jsonObject.put("height", String.valueOf(Common.orderPlacedViaCod.getFinalHeight()));
+//                            jsonObject.put("weight", String.valueOf(Common.orderPlacedViaCod.getFinalWeight()/1000f));
+//                            jsonObject.put("ewaybill_no", "");
+//                            jsonObject.put("customer_gstin", "");
+//
+//                            Log.d("THE OBJECT",jsonObject.toString());
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                        OkHttpClient client2 = new OkHttpClient().newBuilder()
+//                                .build();
+//                        MediaType mediaType2 = MediaType.parse("application/json");
+//                        RequestBody body2 = RequestBody.create(jsonObject.toString(),mediaType2);
+//                        Request request2 = new Request.Builder()
+//                                .url("https://apiv2.shiprocket.in/v1/external/orders/create/adhoc")
+//                                .method("POST", body2)
+//                                .addHeader("Content-Type", "application/json")
+//                                .addHeader("Authorization", "Bearer "+token)
+//                                .build();
+//                        try {
+//                            Response response2= client2.newCall(request2).execute();
+//                            String resStr2 = response2.body().string();
+//                            JSONObject json2 = new JSONObject(resStr2);
+//                            Log.d("DATTFDGDHKSHVJD",json2.toString());
+//                            if (json2 != null){
+//
+//                            }
+//
+//                        } catch (IOException | JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                        ///// Send Order To ShipRocket /////
+//                    }
+//                } catch (IOException | JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//
+//
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void aVoid) {
+//            super.onPostExecute(aVoid);
+//            placingOrderDialog.dismiss();
+//        }
+//    }
 
 
 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:orientation="vertical"
+    android:layout_height="200dp"
+    android:weightSum="9"
+    android:layout_margin="5dp"
+    >
+
+    <ImageView
+        android:id="@+id/sim_prods_imv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitCenter"
+        android:layout_weight="6"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="3"
+        android:background="#40D5F4B1"
+        android:orientation="vertical"
+        android:layout_height="0dp">
+
+        <TextView
+            android:id="@+id/similar_prods_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mavenpro"
+            android:maxLines="2"
+            android:textSize="14sp"
+            android:textColor="#000"
+            android:padding="4dp"
+            android:text="Puma Harpi jgjgjgjgjjgjgjlll"
+            />
+
+        <TextView
+            android:id="@+id/similar_prods_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            android:layout_marginTop="5dp"
+            android:text="Rs 37"
+            android:textColor="#000"
+            android:fontFamily="@font/latobold"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

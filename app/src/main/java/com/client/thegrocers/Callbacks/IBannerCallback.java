@@ -1,6 +1,7 @@
 package com.client.thegrocers.Callbacks;
 
-import com.yuvraj.thegroceryapp.Model.BannerModel;
+
+import com.client.thegrocers.Model.BannerModel;
 
 import java.util.List;
 

@@ -10,9 +10,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.yuvraj.thegroceryapp.Adapters.OrderDetailsAllOrdersAdapter;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.R;
+import com.client.thegrocers.Adapters.OrderDetailsAllOrdersAdapter;
+import com.client.thegrocers.Callbacks.ICurrentFragment;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -65,6 +66,8 @@ public class OrderDetails extends Fragment {
         View view = inflater.inflate(R.layout.fragment_order_details, container, false);
         unbinder = ButterKnife.bind(this,view);
         calendar  = Calendar.getInstance();
+        ICurrentFragment iCurrentFragment  = (ICurrentFragment) getContext();
+        iCurrentFragment.currentFragment("Other");
         simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         displayName();
         initRecycler();

@@ -1,6 +1,7 @@
 package com.client.thegrocers.home.MAP;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -25,6 +26,11 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import com.client.thegrocers.Callbacks.ICurrentFragment;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.EventBus.NewLocationUpdatedNowPlaceToAddNewLocation;
+import com.client.thegrocers.Model.AddressModel;
+import com.client.thegrocers.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -50,11 +56,6 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.EventBus.NewLocationUpdatedNowPlaceToAddNewLocation;
-import com.yuvraj.thegroceryapp.Model.AddressModel;
-import com.yuvraj.thegroceryapp.R;
-
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
@@ -75,9 +76,7 @@ public class CurrentLocationPickFragment extends Fragment implements Permissions
 
     public double latitude;
     public double longitude;
-    private double tbsLatitude, tbsLongitude;
 
-    private LatLng currentLocation;
     private LatLng realTimeLocation;
     public LocationManager locationManager;
 
@@ -98,6 +97,8 @@ public class CurrentLocationPickFragment extends Fragment implements Permissions
         Mapbox.getInstance(getContext(), Common.mapboxKey);
         View view = inflater.inflate(R.layout.fragment_current_location_pick, container, false);
         Common.CurrentFragment = "Map";
+        ICurrentFragment iCurrentFragment  = (ICurrentFragment) getContext();
+        iCurrentFragment.currentFragment("Other");
         initViews(view);
         return view;
     }
@@ -159,6 +160,7 @@ public class CurrentLocationPickFragment extends Fragment implements Permissions
         });
     }
 
+    @SuppressLint("MissingPermission")
     private void getLocation() {
         locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -277,10 +279,14 @@ public class CurrentLocationPickFragment extends Fragment implements Permissions
         adressData.setAddress(address);
         adressData.setPincode(pincode);
         adressData.setState(state);
+        adressData.setLatitude(realTimeLocation.getLatitude());
+        adressData.setLongitude(realTimeLocation.getLongitude());
+
         EventBus.getDefault().postSticky(new NewLocationUpdatedNowPlaceToAddNewLocation(true,adressData));
 
     }
 
+    @SuppressLint("MissingPermission")
     private void enableLocationComponent(Style style) {
         if (PermissionsManager.areLocationPermissionsGranted(getContext())) {
             LocationComponent locationComponent = mMap.getLocationComponent();
@@ -315,6 +321,8 @@ public class CurrentLocationPickFragment extends Fragment implements Permissions
     }
 
     private void AddPlaceLocationToView(LatLng latLng) {
+        realTimeLocation = latLng;
+        Toast.makeText(getContext(), ""+latLng.getLatitude()+ " "+latLng.getLongitude(), Toast.LENGTH_SHORT).show();
         Geocoder geocoder;
         List<Address> addresses;
         geocoder = new Geocoder(getContext(), Locale.getDefault());

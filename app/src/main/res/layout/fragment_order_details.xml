@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#ffffff"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".home.Orders.OrderDetails">
@@ -27,6 +28,7 @@
             android:layout_width="match_parent"
             app:cardCornerRadius="5dp"
             android:layout_margin="5dp"
+            android:backgroundTint="#ffffff"
             app:cardElevation="5dp"
             android:layout_height="wrap_content">
 
@@ -244,6 +246,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             app:cardElevation="5dp"
+            android:backgroundTint="#ffffff"
             app:cardCornerRadius="5dp"
             android:layout_height="wrap_content">
 
@@ -294,6 +297,7 @@
                     android:layout_width="match_parent"
                     android:layout_margin="5dp"
                     app:cardElevation="4dp"
+                    android:backgroundTint="#ffffff"
                     android:layout_height="wrap_content">
 
                     <LinearLayout
@@ -332,6 +336,7 @@
                     android:layout_width="match_parent"
                     android:layout_margin="5dp"
                     app:cardElevation="4dp"
+                    android:backgroundTint="#ffffff"
                     android:layout_height="wrap_content">
 
                     <LinearLayout
@@ -369,6 +374,7 @@
                     android:layout_width="match_parent"
                     android:layout_margin="5dp"
                     app:cardElevation="4dp"
+                    android:backgroundTint="#ffffff"
                     android:layout_height="wrap_content">
 
                     <LinearLayout
@@ -407,6 +413,8 @@
                     android:layout_width="match_parent"
                     android:layout_margin="5dp"
                     app:cardElevation="4dp"
+                    android:backgroundTint="#ffffff"
+
                     android:layout_height="wrap_content">
 
                     <LinearLayout
@@ -445,6 +453,7 @@
                     android:layout_width="match_parent"
                     android:layout_margin="5dp"
                     app:cardElevation="4dp"
+                    android:backgroundTint="#ffffff"
                     android:layout_height="wrap_content">
 
                     <LinearLayout
@@ -483,6 +492,7 @@
                     android:layout_width="match_parent"
                     android:layout_margin="5dp"
                     app:cardElevation="4dp"
+                    android:backgroundTint="#ffffff"
                     android:layout_height="wrap_content">
 
                     <LinearLayout

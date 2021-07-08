@@ -1,6 +1,7 @@
 package com.client.thegrocers.Model;
 
-import com.yuvraj.thegroceryapp.Database.CartItem;
+
+import com.client.thegrocers.Database.CartItem;
 
 import java.util.List;
 

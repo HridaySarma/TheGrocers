@@ -1,6 +1,7 @@
 package com.client.thegrocers.EventBus;
 
-import com.yuvraj.thegroceryapp.Model.PopularCategoriesModel;
+
+import com.client.thegrocers.Model.PopularCategoriesModel;
 
 public class PopularCategoryClick {
     boolean success;

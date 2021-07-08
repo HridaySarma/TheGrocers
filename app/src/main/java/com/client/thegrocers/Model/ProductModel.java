@@ -6,16 +6,16 @@ public class ProductModel {
     private String name,id,image,description;
     private List<ImageModel> imageModelList;
     private long price,sellingPrice;
-    private float weight,height,length,breadth;
     private int quantity;
     private int key;
     private String quantityType;
     private float packageSize;
+    private String totalRating,ratingCounter;
 
     public ProductModel() {
     }
 
-    public ProductModel(String name, String id, String image, String description, List<ImageModel> imageModelList, long price, long sellingPrice, float weight, float height, float length, float breadth, int quantity, int key, String quantityType, float packageSize) {
+    public ProductModel(String name, String id, String image, String description, List<ImageModel> imageModelList, long price, long sellingPrice, int quantity, int key, String quantityType, float packageSize, String totalRating, String ratingCounter) {
         this.name = name;
         this.id = id;
         this.image = image;
@@ -23,14 +23,12 @@ public class ProductModel {
         this.imageModelList = imageModelList;
         this.price = price;
         this.sellingPrice = sellingPrice;
-        this.weight = weight;
-        this.height = height;
-        this.length = length;
-        this.breadth = breadth;
         this.quantity = quantity;
         this.key = key;
         this.quantityType = quantityType;
         this.packageSize = packageSize;
+        this.totalRating = totalRating;
+        this.ratingCounter = ratingCounter;
     }
 
     public String getName() {
@@ -89,37 +87,6 @@ public class ProductModel {
         this.sellingPrice = sellingPrice;
     }
 
-    public float getWeight() {
-        return weight;
-    }
-
-    public void setWeight(float weight) {
-        this.weight = weight;
-    }
-
-    public float getHeight() {
-        return height;
-    }
-
-    public void setHeight(float height) {
-        this.height = height;
-    }
-
-    public float getLength() {
-        return length;
-    }
-
-    public void setLength(float length) {
-        this.length = length;
-    }
-
-    public float getBreadth() {
-        return breadth;
-    }
-
-    public void setBreadth(float breadth) {
-        this.breadth = breadth;
-    }
 
     public int getQuantity() {
         return quantity;
@@ -151,5 +118,21 @@ public class ProductModel {
 
     public void setPackageSize(float packageSize) {
         this.packageSize = packageSize;
+    }
+
+    public String getTotalRating() {
+        return totalRating;
+    }
+
+    public void setTotalRating(String totalRating) {
+        this.totalRating = totalRating;
+    }
+
+    public String getRatingCounter() {
+        return ratingCounter;
+    }
+
+    public void setRatingCounter(String ratingCounter) {
+        this.ratingCounter = ratingCounter;
     }
 }

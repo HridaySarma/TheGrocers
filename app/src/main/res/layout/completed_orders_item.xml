@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="20dp"
+    android:outlineAmbientShadowColor="#000"
+    android:outlineSpotShadowColor="#000"
+    app:contentPadding="8dp"
+    app:cardElevation="5dp"
+    android:layout_height="210dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/co_fi_imageV"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/co_image_rv"
+            android:layout_width="50dp"
+            android:layout_margin="5dp"
+            android:layout_height="match_parent"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/co_prod_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Maggie, 49 l fruit rool up with mega site and multiple others fjjfjfjfj"
+                android:padding="5dp"
+                android:maxLines="3"
+                android:fontFamily="@font/ibmplexsemibold"
+                android:textColor="#000"
+                android:textSize="15sp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order Id : "
+                    android:textSize="13sp"
+                    android:fontFamily="@font/mavenpro"
+                    android:textColor="#000"
+                    android:padding="5dp"
+                    />
+
+                <TextView
+                    android:id="@+id/co_order_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4482337744"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/mavenpro"
+                    android:textColor="#000"
+                    android:padding="5dp"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Completed On : "
+                    android:textSize="13sp"
+                    android:fontFamily="@font/mavenpro"
+                    android:textColor="#000"
+                    android:padding="5dp"
+                    />
+
+                <TextView
+                    android:id="@+id/co_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="26/09/1999"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/latobold"
+                    android:textColor="#000"
+                    android:padding="5dp"
+                    />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/co_final_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rs 5000"
+                android:fontFamily="@font/latobold"
+                android:textColor="#04188D"
+                android:textSize="16sp"
+                android:letterSpacing="0.1"
+                android:padding="5dp"
+                />
+
+            <Button
+                android:id="@+id/co_repeat_order_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Repeat Order"
+                android:backgroundTint="#21CD29"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

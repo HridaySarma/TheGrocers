@@ -11,10 +11,11 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.yuvraj.thegroceryapp.Adapters.ProductsAdapter;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.Model.ProductModel;
-import com.yuvraj.thegroceryapp.R;
+import com.client.thegrocers.Adapters.ProductsAdapter;
+import com.client.thegrocers.Callbacks.ICurrentFragment;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.Model.ProductModel;
+import com.client.thegrocers.R;
 
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class ProductsFragment extends Fragment {
         productsViewModel = ViewModelProviders.of(this).get(ProductsViewModel.class);
         View view = inflater.inflate(R.layout.fragment_products, container, false);
         Common.CurrentFragment = "Products";
+        ICurrentFragment iCurrentFragment  = (ICurrentFragment) getContext();
+        iCurrentFragment.currentFragment("Other");
         unbinder = ButterKnife.bind(this,view);
         initRecyclerViews();
         return view;

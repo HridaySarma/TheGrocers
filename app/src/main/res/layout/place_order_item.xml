@@ -3,6 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:backgroundTint="#fff"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginTop="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -16,7 +19,8 @@
             android:id="@+id/img_cart_po"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
+            android:layout_margin="5dp"
             />
 
         <LinearLayout
@@ -35,7 +39,7 @@
                     android:id="@+id/txt_product_name_po"
                     android:textColor="#000"
                     android:text="Cart"
-                    android:fontFamily="@font/playfairdisplay"
+                    android:fontFamily="@font/latobold"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_marginStart="8dp"
@@ -51,13 +55,6 @@
                     android:gravity="center"
                     android:layout_height="wrap_content">
 
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ruppee_icn"
-                        />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -67,7 +64,7 @@
                         android:layout_marginBottom="5dp"
                         android:gravity="center"
                         android:text="100"
-                        android:fontFamily="@font/playfairdisplay"
+                        android:fontFamily="@font/ibmplexsemibold"
                         android:textColor="#E60D0D"
                         android:layout_marginStart="8dp"
                         />
@@ -76,20 +73,41 @@
 
             </LinearLayout>
 
-            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-                android:layout_width="150dp"
-                android:layout_height="70dp"
-                android:id="@+id/number_button_po"
-                android:layout_marginStart="8dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                app:textSize="10sp"
-                app:backGroundColor="#03A9F4"
-                app:textColor="#fff"
-                app:initialNumber="1"
-                app:finalNumber="20"
-                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_height="wrap_content">
 
+
+                <ImageView
+                    android:id="@+id/po_add_num_btn"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_add_circle_24"
+                    />
+
+                <TextView
+                    android:id="@+id/po_number_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/latobold"
+                    />
+
+                <ImageView
+                    android:id="@+id/po_decrement_num_btn"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_do_not_disturb_on_24"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
 

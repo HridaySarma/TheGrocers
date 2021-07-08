@@ -12,10 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.yuvraj.thegroceryapp.Callbacks.IItemClick;
-import com.yuvraj.thegroceryapp.EventBus.ProductClickedInAllProducts;
-import com.yuvraj.thegroceryapp.Model.SingletonProductModel;
-import com.yuvraj.thegroceryapp.R;
+import com.client.thegrocers.Callbacks.IItemClick;
+import com.client.thegrocers.EventBus.ProductClickedInAllProducts;
+import com.client.thegrocers.Model.SingletonProductModel;
+import com.client.thegrocers.R;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -48,18 +48,8 @@ public class AnyProdAdapter extends RecyclerView.Adapter<AnyProdAdapter.ViewHold
         holder.prodName.setText(new StringBuilder(singletonProductModelList.get(position).getName()));
         holder.prodPrice.setText(String.valueOf(singletonProductModelList.get(position).getSellingPrice()));
         holder.mainCatTv.setText(singletonProductModelList.get(position).getCategory_id());
-        holder.viewProductBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EventBus.getDefault().postSticky(new ProductClickedInAllProducts(true,singletonProductModelList.get(position)));
-            }
-        });
-        holder.setCategoryClickListener(new IItemClick() {
-            @Override
-            public void onItemClicked(View view, int position) {
-                EventBus.getDefault().postSticky(new ProductClickedInAllProducts(true,singletonProductModelList.get(position)));
-            }
-        });
+        holder.viewProductBtn.setOnClickListener(view -> EventBus.getDefault().postSticky(new ProductClickedInAllProducts(true,singletonProductModelList.get(position))));
+        holder.setCategoryClickListener((view, position1) -> EventBus.getDefault().postSticky(new ProductClickedInAllProducts(true,singletonProductModelList.get(position1))));
     }
 
     @Override

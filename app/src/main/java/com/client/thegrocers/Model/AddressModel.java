@@ -1,10 +1,14 @@
 package com.client.thegrocers.Model;
 
-public class AddressModel {
+import java.io.Serializable;
+import java.lang.reflect.Array;
+
+public class AddressModel implements Serializable {
 
     private String name,address,streetAddress,landmark,state,pincode,city;
+    private double latitude,longitude;
 
-    public AddressModel(String name, String address, String streetAddress, String landmark, String state, String pincode, String city) {
+    public AddressModel(String name, String address, String streetAddress, String landmark, String state, String pincode, String city, double latitude, double longitude) {
         this.name = name;
         this.address = address;
         this.streetAddress = streetAddress;
@@ -12,7 +16,10 @@ public class AddressModel {
         this.state = state;
         this.pincode = pincode;
         this.city = city;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
+
 
     public AddressModel() {
     }
@@ -71,5 +78,21 @@ public class AddressModel {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }

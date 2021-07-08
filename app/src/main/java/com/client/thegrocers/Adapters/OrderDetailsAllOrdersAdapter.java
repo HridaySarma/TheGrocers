@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.yuvraj.thegroceryapp.Database.CartItem;
-import com.yuvraj.thegroceryapp.R;
+import com.client.thegrocers.Database.CartItem;
+import com.client.thegrocers.R;
 
 import java.util.List;
 

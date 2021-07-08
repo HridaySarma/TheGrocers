@@ -4,19 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.client.thegrocers.Callbacks.IBannerCallback;
+import com.client.thegrocers.Callbacks.IBestDealsCallback;
+import com.client.thegrocers.Callbacks.ICategoryCallback;
+import com.client.thegrocers.Callbacks.IPopularCategoriesCallback;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.Model.BannerModel;
+import com.client.thegrocers.Model.BestDealModel;
+import com.client.thegrocers.Model.CategoryModel;
+import com.client.thegrocers.Model.PopularCategoriesModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.yuvraj.thegroceryapp.Callbacks.IBannerCallback;
-import com.yuvraj.thegroceryapp.Callbacks.IBestDealsCallback;
-import com.yuvraj.thegroceryapp.Callbacks.ICategoryCallback;
-import com.yuvraj.thegroceryapp.Callbacks.IPopularCategoriesCallback;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.Model.BannerModel;
-import com.yuvraj.thegroceryapp.Model.BestDealModel;
-import com.yuvraj.thegroceryapp.Model.CategoryModel;
-import com.yuvraj.thegroceryapp.Model.PopularCategoriesModel;
 
 import java.util.ArrayList;
 import java.util.List;

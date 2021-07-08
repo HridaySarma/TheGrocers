@@ -29,15 +29,6 @@ public class LocalCartDataSource implements CartDataSource {
         return cartDao.sumPriceInCart(uid);
     }
 
-    @Override
-    public Single<Double> sumWeightInCart(String uid) {
-        return cartDao.sumWeightInCart(uid);
-    }
-
-    @Override
-    public Single<Double> sumHeightInCart(String uid) {
-        return cartDao.sumHeightInCart(uid);
-    }
 
     @Override
     public Single<CartItem> getItemInCart(String productId, String uid) {

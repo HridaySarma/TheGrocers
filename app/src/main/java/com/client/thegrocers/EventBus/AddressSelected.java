@@ -1,6 +1,7 @@
 package com.client.thegrocers.EventBus;
 
-import com.yuvraj.thegroceryapp.Model.AddressModel;
+
+import com.client.thegrocers.Model.AddressModel;
 
 public class AddressSelected {
     boolean success;

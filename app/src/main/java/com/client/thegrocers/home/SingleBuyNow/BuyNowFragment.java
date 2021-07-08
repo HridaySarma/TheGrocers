@@ -12,12 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.client.thegrocers.Adapters.BuyNowAdapter;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.Model.OrdersModel;
+import com.client.thegrocers.R;
 import com.google.android.material.snackbar.Snackbar;
-import com.yuvraj.thegroceryapp.Adapters.BuyNowAdapter;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.Model.OrdersModel;
-import com.yuvraj.thegroceryapp.R;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -57,7 +56,7 @@ public class BuyNowFragment extends Fragment {
 
 
     private void initRv() {
-        BuyNowAdapter buyNowAdapter = new BuyNowAdapter(getContext(),Common.buyNowClass);
+        BuyNowAdapter buyNowAdapter = new BuyNowAdapter(getContext(), Common.buyNowClass);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         itemsList.setLayoutManager(linearLayoutManager);
         itemsList.setAdapter(buyNowAdapter);

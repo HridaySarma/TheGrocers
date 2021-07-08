@@ -6,7 +6,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.yuvraj.thegroceryapp.home.HomeActivity;
+import com.client.thegrocers.home.HomeActivity;
+
 
 public class CreditsActivity extends AppCompatActivity {
 
@@ -21,7 +22,7 @@ public class CreditsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(com.yuvraj.thegroceryapp.CreditsActivity.this, HomeActivity.class));
+        startActivity(new Intent(CreditsActivity.this, HomeActivity.class));
         finish();
         super.onBackPressed();
     }

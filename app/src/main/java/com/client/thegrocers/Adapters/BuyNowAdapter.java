@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
-import com.yuvraj.thegroceryapp.Model.BuyNowClass;
-import com.yuvraj.thegroceryapp.R;
+import com.client.thegrocers.Model.BuyNowClass;
+import com.client.thegrocers.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,7 +1,8 @@
 package com.client.thegrocers.Callbacks;
 
 
-import com.yuvraj.thegroceryapp.Model.SingletonProductModel;
+
+import com.client.thegrocers.Model.SingletonProductModel;
 
 import java.util.List;
 

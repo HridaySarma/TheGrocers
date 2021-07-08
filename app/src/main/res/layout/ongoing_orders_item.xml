@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="32dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/oo_p_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="The Full Order Details with multiple dealio and the post apo war is comin"
+            android:fontFamily="@font/ibmplexsemibold"
+            android:textSize="16sp"
+            android:textColor="#000"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order Id : "
+                android:textColor="#494949"
+                android:fontFamily="@font/latobold"
+                />
+
+            <TextView
+                android:id="@+id/oo_orderId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AY8849837bbffhhfb"
+                android:textColor="#000"
+                android:fontFamily="@font/latobold"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status : "
+                android:textColor="#494949"
+                android:fontFamily="@font/latobold"
+                />
+
+            <TextView
+                android:id="@+id/oo_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Packing items"
+                android:textColor="#D40808"
+                android:fontFamily="@font/latobold"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amount : "
+                android:textColor="#494949"
+                android:fontFamily="@font/latobold"
+                />
+
+            <TextView
+                android:id="@+id/oo_total_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rs 5000"
+                android:textColor="#032D40"
+                android:textSize="16sp"
+                android:fontFamily="@font/latobold"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Items : "
+                android:textColor="#494949"
+                android:fontFamily="@font/latobold"
+                />
+
+            <TextView
+                android:id="@+id/oo_total_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:textColor="#032D40"
+                android:textSize="14sp"
+                android:fontFamily="@font/latobold"
+                />
+
+        </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:weightSum="9"
+           android:layout_marginTop="8dp"
+
+           android:layout_height="wrap_content">
+
+           <Button
+               android:id="@+id/oo_track_order_btn"
+               android:layout_width="0dp"
+               android:layout_weight="7"
+               android:layout_height="wrap_content"
+               android:text="Track Order"
+               android:backgroundTint="#66BB6A"
+               android:textSize="10sp"
+               />
+
+           <RelativeLayout
+               android:layout_width="0dp"
+               android:layout_weight="2"
+               android:layout_height="match_parent">
+
+               <ImageView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/ic_baseline_adjust_24"
+                   android:layout_centerInParent="true"
+                   />
+
+           </RelativeLayout>
+
+       </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UpdatedPackages.NewProductDetails.NewProductDetailsFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:id="@+id/appbar_new_prod_details"
+        android:background="@color/transparent"
+        android:fitsSystemWindows="true"
+        android:layout_height="400dp">
+
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.asksira.loopingviewpager.LoopingViewPager
+                    android:id="@+id/new_prod_details_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+
+                <com.rd.PageIndicatorView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:piv_viewPager="@id/new_prod_details_pager"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="26dp"
+                    app:piv_selectedColor="#000"
+                    app:piv_unselectedColor="#F4F4F4"
+                    />
+
+
+            </RelativeLayout>
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/appbar_new_prod_details"
+        app:layout_anchorGravity="bottom|end"
+        app:fabSize="normal"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_baseline_favorite_border_24"
+        android:backgroundTint="#fff"
+
+        />
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:backgroundTint="#EAD30A"
+        android:layout_gravity="bottom"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:gravity="center|start"
+            android:paddingEnd="16dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/increment_btn_new_prod_d"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_add_circle_24"
+                />
+
+            <TextView
+                android:id="@+id/quanty_tv_new_prod_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="1"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:fontFamily="@font/ibmplexsemibold"
+                />
+
+            <ImageView
+                android:id="@+id/decrement_btn_new_prod_d"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_do_not_disturb_on_24"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/new_add_to_cart_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:text="Add to cart"
+                    android:textSize="12sp"
+                    android:backgroundTint="#42B147"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:padding="16dp"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="32dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Brand Name"
+                android:textSize="12sp"
+                android:textColor="#000"
+                android:fontFamily="@font/varela_round"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2.7"
+                    android:text="Basic Logo Short Sleeve T-Shirt"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/ibmplexsemibold"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.3"
+                    android:textColor="#000"
+                    android:text="Rs 600"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/ibmplexsemibold"
+                    android:gravity="center"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center|start"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_baseline_access_time_24"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Low in Stock"
+                    android:textSize="12sp"
+                    android:paddingStart="5dp"
+                    android:fontFamily="@font/mavenpro"
+                    />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_baseline_keyboard_return_24"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="30 Days Return"
+                    android:textSize="12sp"
+                    android:paddingStart="5dp"
+                    android:fontFamily="@font/mavenpro"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/product_details_tv_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Product Details"
+                android:gravity="center|start"
+                android:textSize="14sp"
+                android:textColor="#000"
+                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_small"
+                android:fontFamily="@font/varela_round"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#A6A6A6"
+                />
+
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/product_desc_exp_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:el_expanded="false"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/prod_desc_tv_new"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="The full Product Details"
+                        android:textColor="#000"
+                        android:fontFamily="@font/mavenpro"
+                        android:textSize="14sp"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#A4D84E4E"
+                        />
+
+                </LinearLayout>
+
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Shipping and Return"
+                android:gravity="center|start"
+                android:textSize="14sp"
+                android:textColor="#000"
+                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_small"
+                android:fontFamily="@font/varela_round"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#A6A6A6"
+                />
+
+            <TextView
+                android:id="@+id/no_ratings_and_reviews_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="No ratings and reviews yet "
+                android:fontFamily="@font/ibmplexsemibold"
+                android:visibility="gone"
+                android:textSize="22sp"
+                android:textColor="#000"
+
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:id="@+id/ratings_and_reviews_linear_layout"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/main_rating_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.8"
+                    android:textSize="28sp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/latobold"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content">
+
+                    <com.willy.ratingbar.ScaleRatingBar
+                        android:id="@+id/main_rating_bar_new_det"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srb_numStars="5"
+                        app:srb_starHeight="10dp"
+                        app:srb_starWidth="10dp"
+                        app:srb_rating="4.5"
+                        />
+
+                    <TextView
+                        android:id="@+id/main_rating_total_reviews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="54 reviews"
+                        android:fontFamily="@font/mavenpro"
+                        android:textSize="12sp"
+                        />
+
+
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/ic_baseline_keyboard_arrow_right_small"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reviews_rv_new"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                />
+
+
+            <RelativeLayout
+                android:id="@+id/write_a_review_tv_btn"
+                android:layout_width="match_parent"
+                android:background="@drawable/rectangle_bg"
+                android:layout_marginTop="16dp"
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_baseline_edit_24"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Write a review"
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/varela_round"
+                    />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Similar Products"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/mavenpro"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/similar_prods_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="150dp"
+                />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,11 +1,12 @@
 package com.client.thegrocers.Common;
 
-import com.yuvraj.thegroceryapp.Model.AddressModel;
-import com.yuvraj.thegroceryapp.Model.BuyNowClass;
-import com.yuvraj.thegroceryapp.Model.CategoryModel;
-import com.yuvraj.thegroceryapp.Model.Order;
-import com.yuvraj.thegroceryapp.Model.ProductModel;
-import com.yuvraj.thegroceryapp.Model.UserModel;
+import com.client.thegrocers.Model.AddressModel;
+import com.client.thegrocers.Model.BuyNowClass;
+import com.client.thegrocers.Model.CategoryModel;
+import com.client.thegrocers.Model.Order;
+import com.client.thegrocers.Model.ProductModel;
+import com.client.thegrocers.Model.UserModel;
+import com.client.thegrocers.UpdatedPackages.CommonNew.NewUserMode;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -22,7 +23,10 @@ public class Common {
     public static final String POPULAR_CATEGORIES_REF = "PopularCategories";
     public static final String BEST_DEALS_REF = "BestDealsRef";
     public static final String ORDER_REF = "Orders";
+    public static final String COUPON_CODES_REF = "Coupons";
     public static final String ALL_PRODUCTS_REF = "AllProducts";
+    public static final String NEW_USERS_REF = "NewUsers";
+    public static final String ONGOING_ORDERS_REF = "OngoingOrdersRef";
     public static  boolean SIGNINFROMACCOUNT ;
     public static CategoryModel categorySelected;
     public static UserModel currentUser;
@@ -35,6 +39,7 @@ public class Common {
     public static Order orderPlacedViaCod;
     public static String CurrentFragment;
     public static Order orderSelectedForDetails;
+    public static NewUserMode newCurrentUser;
 
     public static String formatPrice(double displayprice) {
         if (displayprice !=0){

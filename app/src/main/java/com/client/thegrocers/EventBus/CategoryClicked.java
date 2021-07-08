@@ -1,6 +1,7 @@
 package com.client.thegrocers.EventBus;
 
-import com.yuvraj.thegroceryapp.Model.CategoryModel;
+
+import com.client.thegrocers.Model.CategoryModel;
 
 public class CategoryClicked {
     boolean success;

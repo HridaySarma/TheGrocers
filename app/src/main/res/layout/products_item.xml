@@ -6,7 +6,7 @@
     app:cardElevation="10dp"
     app:cardCornerRadius="10dp"
     android:backgroundTint="#fff"
-    android:layout_height="200dp">
+    android:layout_height="230dp">
 
 
     <LinearLayout
@@ -41,8 +41,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="PRODUCT NAME MINGHT BE THIS LONG DONNO HOW MUCH IT WILL E "
-                android:textColor="#9000"
+                android:textColor="#000"
                 android:maxLines="4"
+                android:fontFamily="@font/latobold"
                 android:gravity="center"
                 android:padding="5dp"
                 android:textSize="14sp"
@@ -59,10 +60,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rs 6000"
-                    android:textSize="18sp"
+                    android:textSize="13sp"
                     android:padding="5dp"
-                    android:textColor="#092CEA"
-                    android:fontFamily="serif"
+                    android:textColor="#031264"
+                    android:fontFamily="@font/varela_round"
                     android:textStyle="bold"
                     android:gravity="center"
                     />
@@ -72,13 +73,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rs 7000"
-                    android:textSize="13sp"
+                    android:textSize="11sp"
                     android:padding="5dp"
-                    android:textColor="#092CEA"
-                    android:fontFamily="serif"
+                    android:textColor="#031264"
+                    android:fontFamily="@font/varela_round"
                     android:textStyle="bold"
                     android:gravity="top"
-                    android:layout_marginBottom="4dp"
                     />
 
             </LinearLayout>
@@ -90,17 +90,69 @@
                 android:gravity="center"
                 android:textSize="16sp"
                 android:text="500 gms"
-                android:textColor="#000"
-                android:fontFamily="serif"
+                android:textColor="#F43434"
+                android:fontFamily="@font/latobold"
                 />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/prod_add_num_btn"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_add_circle_24"
+                    />
+
+                <TextView
+                    android:id="@+id/prod_number_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/latobold"
+                    />
+
+                <ImageView
+                    android:id="@+id/prod_decrement_num_btn"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_do_not_disturb_on_24"
+                    />
+
+            </LinearLayout>
+
+<!--            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton-->
+<!--                android:id="@+id/products_number_picker"-->
+<!--                android:layout_width="match_parent"-->
+<!--                app:textSize="7sp"-->
+<!--                app:textColor="#000"-->
+<!--                app:backGroundColor="#D1CCCC"-->
+<!--                android:layout_height="50dp"-->
+<!--                app:initialNumber="1"-->
+<!--                app:finalNumber="12"-->
+<!--                android:layout_margin="10dp"-->
+<!--                />-->
+
+
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/addToCartProdBtn"
                 android:layout_width="wrap_content"
+                android:backgroundTint="#fff"
                 android:layout_margin="5dp"
                 android:layout_height="wrap_content"
-                app:fabCustomSize="35dp"
-                android:src="@drawable/ic_baseline_shopping_cart_24"
+                android:layout_gravity="center"
+                app:fabCustomSize="40dp"
+                android:src="@drawable/ic_baseline_add_circle_24"
                 />
 
         </LinearLayout>

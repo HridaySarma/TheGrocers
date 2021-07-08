@@ -11,10 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.yuvraj.thegroceryapp.Callbacks.IItemClick;
-import com.yuvraj.thegroceryapp.EventBus.BestDealItemClick;
-import com.yuvraj.thegroceryapp.Model.BestDealModel;
-import com.yuvraj.thegroceryapp.R;
+import com.client.thegrocers.Callbacks.IItemClick;
+import com.client.thegrocers.EventBus.BestDealItemClick;
+import com.client.thegrocers.Model.BestDealModel;
+import com.client.thegrocers.R;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -46,12 +46,7 @@ public class BestDealsAdapter  extends RecyclerView.Adapter<BestDealsAdapter.Vie
         holder.bestDealName.setText(bestDealModelList.get(position).getName());
         Glide.with(context).load(bestDealModelList.get(position).getImage()).into(holder.bestDealImage);
         holder.price.setText(new StringBuilder("Rs ").append(bestDealModelList.get(position).getPrice()));
-        holder.setiItemClick(new IItemClick() {
-            @Override
-            public void onItemClicked(View view, int position) {
-                EventBus.getDefault().postSticky(new BestDealItemClick(true,bestDealModelList.get(position)));
-            }
-        });
+        holder.setiItemClick((view, position1) -> EventBus.getDefault().postSticky(new BestDealItemClick(true,bestDealModelList.get(position1))));
     }
 
 

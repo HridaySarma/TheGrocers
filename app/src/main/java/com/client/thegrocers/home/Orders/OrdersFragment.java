@@ -17,6 +17,15 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.client.thegrocers.Adapters.OrdersAdapter;
+import com.client.thegrocers.Callbacks.ICurrentFragment;
+import com.client.thegrocers.Callbacks.ILoadOrderCallbackListener;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.EventBus.OrderRequestForCancel;
+import com.client.thegrocers.EventBus.OrderRequestForReturn;
+import com.client.thegrocers.Model.Order;
+import com.client.thegrocers.Model.SMSClientNew;
+import com.client.thegrocers.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -24,15 +33,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.yuvraj.thegroceryapp.Adapters.OrdersAdapter;
-import com.yuvraj.thegroceryapp.Callbacks.ILoadOrderCallbackListener;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.EventBus.OrderRequestForCancel;
-import com.yuvraj.thegroceryapp.EventBus.OrderRequestForReturn;
-import com.yuvraj.thegroceryapp.Model.Order;
-import com.yuvraj.thegroceryapp.Model.SMSClientNew;
-import com.yuvraj.thegroceryapp.R;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -102,6 +102,8 @@ public class OrdersFragment extends Fragment implements ILoadOrderCallbackListen
         View view = inflater.inflate(R.layout.fragment_orders, container, false);
         ordersViewModel = ViewModelProviders.of(this).get(OrdersViewModel.class);
         Common.CurrentFragment = "Orders";
+        ICurrentFragment iCurrentFragment  = (ICurrentFragment) getContext();
+        iCurrentFragment.currentFragment("Orders");
         unbinder = ButterKnife.bind(this,view);
         initViews(view);
         if (Common.currentUser != null){

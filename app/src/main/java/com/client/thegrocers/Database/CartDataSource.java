@@ -13,9 +13,6 @@ public interface CartDataSource {
 
     Single<Double> sumPriceInCart(String uid);
 
-    Single<Double> sumWeightInCart(String uid);
-
-    Single<Double> sumHeightInCart(String uid);
 
     Single<CartItem> getItemInCart(String productId, String uid);
 

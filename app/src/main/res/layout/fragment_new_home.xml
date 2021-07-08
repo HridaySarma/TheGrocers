@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UpdatedPackages.NewHome.NewHomeFragment.NewHomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_height="wrap_content">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:orientation="horizontal"
+           android:layout_height="wrap_content">
+
+           <ImageView
+               android:layout_width="20dp"
+               android:layout_height="20dp"
+               android:src="@drawable/waving_hand_icon"
+               />
+
+           <TextView
+               android:id="@+id/home_user_name"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Hi , Angel"
+               android:paddingStart="10dp"
+               android:textSize="16sp"
+               android:textColor="#000"
+               android:fontFamily="@font/varela_round"
+               />
+
+       </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="18sp"
+            android:letterSpacing="0.2"
+            android:textColor="#000"
+            android:fontFamily="@font/ibmplexsemibold"
+            android:text="What is it you \ndesire today ?"
+            />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/search_prod_cv_new"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="50dp"
+            app:cardCornerRadius="16dp"
+            android:backgroundTint="#fff"
+            app:contentPaddingLeft="16dp"
+            app:cardElevation="5dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_gravity="center|start"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_search_black_24dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/varela_round"
+                    android:text="Search your product"
+                    android:textColor="#9000"
+                    />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:orientation="horizontal"
+           android:layout_marginTop="16dp"
+           android:layout_height="wrap_content">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Categories "
+               android:textColor="#000"
+               android:fontFamily="@font/ibmplexsemibold"
+
+               />
+
+
+           <TextView
+               android:id="@+id/view_all_cats_new"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="View All"
+               android:gravity="end"
+               android:textSize="12sp"
+               android:fontFamily="@font/varela_round"
+
+               />
+
+       </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/new_cats_small_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            />
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="4dp"
+            android:layout_height="100dp">
+
+            <com.asksira.loopingviewpager.LoopingViewPager
+                android:id="@+id/new_small_coupon_vp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+            <com.rd.PageIndicatorView
+                android:id="@+id/pager_indicator_small_coupon"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                app:piv_viewPager="@+id/new_small_coupon_vp"
+                app:piv_animationDuration="300"
+                app:piv_animationType="worm"
+                app:piv_radius="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="bottom|center"
+                app:piv_padding="5dp"
+                app:piv_selectedColor="#3ED81212"
+                app:piv_strokeWidth="2dp"
+                app:piv_unselectedColor="#fff"
+                app:piv_interactiveAnimation="true"
+                app:piv_dynamicCount="true"
+                />
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Top Products "
+                android:textColor="#000"
+                android:fontFamily="@font/ibmplexsemibold"
+
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View All"
+                android:gravity="end"
+                android:textSize="12sp"
+                android:fontFamily="@font/varela_round"
+
+                />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/new_pop_products_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            />
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="4dp"
+            android:layout_height="200dp">
+
+            <com.asksira.loopingviewpager.LoopingViewPager
+                android:id="@+id/new_big_coupon_vp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+            <com.rd.PageIndicatorView
+                android:id="@+id/pager_indicator_big_coupon"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                app:piv_viewPager="@+id/new_big_coupon_vp"
+                app:piv_animationDuration="300"
+                app:piv_animationType="worm"
+                app:piv_radius="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="bottom|center"
+                app:piv_padding="5dp"
+                app:piv_selectedColor="#3ED81212"
+                app:piv_strokeWidth="2dp"
+                app:piv_unselectedColor="#fff"
+                app:piv_interactiveAnimation="true"
+                app:piv_dynamicCount="true"
+                />
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Popular Categories "
+                android:textColor="#000"
+                android:fontFamily="@font/ibmplexsemibold"
+
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View All"
+                android:gravity="end"
+                android:textSize="12sp"
+                android:fontFamily="@font/varela_round"
+
+                />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/new_pop_categories_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            />
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="4dp"
+            android:layout_height="200dp">
+
+            <com.asksira.loopingviewpager.LoopingViewPager
+                android:id="@+id/new_top_banners_vp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+            <com.rd.PageIndicatorView
+                android:id="@+id/pager_indicator_new_top_banner"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                app:piv_viewPager="@+id/new_top_banners_vp"
+                app:piv_animationDuration="300"
+                app:piv_animationType="worm"
+                app:piv_radius="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="bottom|center"
+                app:piv_padding="5dp"
+                app:piv_selectedColor="#3ED81212"
+                app:piv_strokeWidth="2dp"
+                app:piv_unselectedColor="#fff"
+                app:piv_interactiveAnimation="true"
+                app:piv_dynamicCount="true"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</ScrollView>

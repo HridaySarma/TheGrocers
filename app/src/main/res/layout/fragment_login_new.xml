@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="7"
+    tools:context=".Login_SignUp.Login.LoginFragmentNew">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.5"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/login_banner" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4.5"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/latobold"
+            android:text="Login"
+            android:paddingStart="10dp"
+            android:textColor="#000"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <com.zigis.materialtextfield.MaterialTextField
+            android:id="@+id/phone_edt_l"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mavenpro"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/ic_baseline_local_phone_24"
+            android:drawablePadding="10dp"
+            android:hint="E-mail"
+            android:text=""
+            app:activeHintColor="@android:color/holo_blue_dark"
+            app:activeUnderlineColor="@android:color/holo_blue_dark"
+            app:cursorDrawableColor="@color/colorAccent"
+            app:defaultHintColor="@android:color/darker_gray"
+            app:defaultUnderlineColor="@android:color/darker_gray"
+            app:errorColor="@android:color/holo_red_dark"
+            app:isClearEnabled="true"
+            app:isMultilineField="true"
+            app:rightButtonColor="@color/light_gray"
+            app:rightIcon="@drawable/ic_clear"
+            android:textColor="#000"
+            android:textSize="15sp"
+            app:togglePasswordVisibility="false"
+            app:underlineHeight="1.5dp" />
+
+        <com.zigis.materialtextfield.MaterialTextField
+            android:id="@+id/password_edt_l"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/mavenpro"
+            android:hint="Password"
+            android:text=""
+            app:activeHintColor="@android:color/holo_blue_dark"
+            app:activeUnderlineColor="@android:color/holo_blue_dark"
+            app:cursorDrawableColor="@color/colorAccent"
+            app:defaultHintColor="@android:color/darker_gray"
+            app:defaultUnderlineColor="@android:color/darker_gray"
+            app:errorColor="@android:color/holo_red_dark"
+            app:isClearEnabled="true"
+            app:isMultilineField="true"
+            app:rightButtonColor="@color/light_gray"
+            app:rightIcon="@drawable/ic_clear"
+            app:togglePasswordVisibility="true"
+            app:underlineHeight="1.5dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:textColor="@color/mapbox_plugins_bright_blue"
+            android:textSize="16sp"
+            android:gravity="end"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/mavenpro"
+            />
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:text="Login"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Or,login with,"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:letterSpacing="0.1"
+            android:textColor="#000"
+            android:fontFamily="@font/mavenpro"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_marginTop="16dp"
+            android:layout_height="40dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#DDA5A5"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/google_icon"
+                    />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#DDA5A5"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/facebook_icon"
+                    />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#DDA5A5"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/truecallernew"
+                    />
+
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New to The Grocers?"
+                    android:textColor="#000"
+                    android:fontFamily="@font/varela_round"
+                    />
+
+                <TextView
+                    android:id="@+id/register_now_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Register"
+                    android:textColor="@color/mapbox_plugins_bright_blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:paddingStart="5dp"
+                    android:fontFamily="@font/latobold"
+                    />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

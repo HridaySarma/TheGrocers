@@ -1,11 +1,13 @@
 package com.client.thegrocers.home.Search;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -15,19 +17,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
-import com.yuvraj.thegroceryapp.Adapters.AnyProdAdapter;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.Model.SingletonProductModel;
-import com.yuvraj.thegroceryapp.R;
+import com.client.thegrocers.Adapters.AnyProdAdapter;
+import com.client.thegrocers.Callbacks.ICurrentFragment;
+import com.client.thegrocers.Callbacks.IFilterProcessed;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.Filter.FilterFragment;
+import com.client.thegrocers.Model.CategoryModel;
+import com.client.thegrocers.Model.SingletonProductModel;
+import com.client.thegrocers.R;
 
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
+import java.util.TreeMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements IFilterProcessed {
 
 
     Unbinder unbinder;
@@ -41,6 +49,11 @@ public class SearchFragment extends Fragment {
     FloatingSearchView floatingSearchView;
     @BindView(R.id.searchLay)
     LinearLayout searchLay;
+    @BindView(R.id.filter_cv)
+    CardView filterCv;
+    private static List<SingletonProductModel> singoModel;
+    private List<CategoryModel> catStorage ;
+    private TreeMap<String, Integer> priceStorage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +62,8 @@ public class SearchFragment extends Fragment {
         View view  =inflater.inflate(R.layout.fragment_search, container, false);
         unbinder = ButterKnife.bind(this,view);
         Common.CurrentFragment = "Search";
+        ICurrentFragment iCurrentFragment  = (ICurrentFragment) getContext();
+        iCurrentFragment.currentFragment("Search");
         initViews();
         setTextWatchers();
         return view;
@@ -60,15 +75,23 @@ public class SearchFragment extends Fragment {
         searchAnyProductViewModel.getListMutableLiveDataAllProds().observe(getViewLifecycleOwner(), new Observer<List<SingletonProductModel>>() {
             @Override
             public void onChanged(List<SingletonProductModel> singletonProductModelList) {
-                if (singletonProductModelList == null || singletonProductModelList.equals("")){
+                if (singletonProductModelList == null){
                     searchAnim.setVisibility(View.VISIBLE);
                 }else {
+                    singoModel = singletonProductModelList;
                     anyProdAdapter = new AnyProdAdapter(getContext(),singletonProductModelList);
                     allProdRecyclerView.setAdapter(anyProdAdapter);
                     searchAnim.setVisibility(View.GONE);
                 }
             }
         });
+
+        filterCv.setOnClickListener(v -> {
+
+            FilterFragment filterFragment = new FilterFragment(catStorage,priceStorage);
+            filterFragment.show(getChildFragmentManager(),"BottomFragment");
+        });
+
     }
 
     private void setTextWatchers() {
@@ -132,5 +155,37 @@ public class SearchFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onFilterSelected(List<CategoryModel> catList, TreeMap<String, Integer> priceRange) {
+       if (catList != null && catList.size() != 0 && !priceRange.isEmpty() ){
+           List<SingletonProductModel> filteredList = new ArrayList<>();
+           catStorage = catList;
+           priceStorage = priceRange;
+           for (int i = 0;i<catList.size();i++){
+               for (int j =0;j<singoModel.size();j++){
+                   if (catList.get(i).getName().equals(singoModel.get(j).getCategory_id())){
+                       if (singoModel.get(j).getSellingPrice() >= priceRange.get("Initial") && singoModel.get(j).getSellingPrice() <= (priceRange.get("End"))){
+                           filteredList.add(singoModel.get(j));
+                       }
+                   }
+               }
+           }
+           searchAnyProductViewModel.getListMutableLiveDataAllProds().setValue(filteredList);
+       }else if (priceRange != null){
+           List<SingletonProductModel> filteredList = new ArrayList<>();
+           priceStorage= priceRange;
+               for (int j =0;j<singoModel.size();j++){
+                       if (singoModel.get(j).getSellingPrice() >= priceRange.get("Initial") && singoModel.get(j).getSellingPrice() <= (priceRange.get("End"))){
+                           filteredList.add(singoModel.get(j));
+                       }
+           }
+           searchAnyProductViewModel.getListMutableLiveDataAllProds().setValue(filteredList);
+       }else {
+           priceStorage = null;
+           catStorage = null;
+           searchAnyProductViewModel.LoadTheProducts();
+       }
     }
 }

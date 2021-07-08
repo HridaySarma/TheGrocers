@@ -1,8 +1,10 @@
 package com.client.thegrocers.Payment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -10,19 +12,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.atom.mpsdklibrary.PayActivity;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.Database.CartItem;
+import com.client.thegrocers.EventBus.OnlinePaymentSuccessFull;
+import com.client.thegrocers.Model.PaymentCredentials;
+import com.client.thegrocers.R;
+import com.client.thegrocers.home.HomeActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.Database.CartItem;
-import com.yuvraj.thegroceryapp.EventBus.OnlinePaymentSuccessFull;
-import com.yuvraj.thegroceryapp.Model.PaymentCredentials;
-import com.yuvraj.thegroceryapp.R;
-import com.yuvraj.thegroceryapp.home.HomeActivity;
 
 import org.greenrobot.eventbus.EventBus;
+import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -43,7 +46,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import dmax.dialog.SpotsDialog;
 
-public class PaymentGatewayActivity extends AppCompatActivity {
+public class PaymentGatewayActivity extends AppCompatActivity  {
 
     private String amt;
     private Calendar calendar;
@@ -52,33 +55,37 @@ public class PaymentGatewayActivity extends AppCompatActivity {
     String dateVerified;
     private AlertDialog alertDialog;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_gateway);
+
+//        Checkout.preload(getApplicationContext());
+
         simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         calendar = Calendar.getInstance();
         calendar.setTimeInMillis(Common.PaymentGatewayOrderDetails.getCreateDate());
         date = new Date(Common.PaymentGatewayOrderDetails.getCreateDate());
-        alertDialog = new SpotsDialog.Builder().setCancelable(false).setContext(PaymentGatewayActivity.this).build();
+        alertDialog = new SpotsDialog.Builder().setCancelable(true).setContext(PaymentGatewayActivity.this).build();
         alertDialog.setMessage("Starting Payment Gateway");
         alertDialog.show();
         String dateOfOrder = simpleDateFormat.format(date);
         dateVerified = dateOfOrder.replace("-","/");
 
-            FirebaseDatabase.getInstance().getReference("PaymentCredential")
+            FirebaseDatabase.getInstance().getReference("PaymentCredentials")
                     .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.exists()){
-                                PaymentCredentials paymentCredentials = snapshot.getValue(PaymentCredentials.class);
-                                if (paymentCredentials != null){
+                                PaymentCredentials paymentCredential = snapshot.getValue(PaymentCredentials.class);
+                                if (paymentCredential != null){
                                     try {
-                                        alertDialog.dismiss();
-                                        startPayment(paymentCredentials);
+                                        startPayment(paymentCredential);
                                     } catch (Exception e) {
                                         e.printStackTrace();
-                                        Toast.makeText(PaymentGatewayActivity.this, "Transaction failed ! Please check your internet connection", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(PaymentGatewayActivity.this, "Transaction failed !"+e.getMessage() , Toast.LENGTH_SHORT).show();
                                         finish();
                                     }
                                 }
@@ -91,7 +98,10 @@ public class PaymentGatewayActivity extends AppCompatActivity {
                         }
                     });
     }
-    private void startPayment(PaymentCredentials paymentCredentials) throws Exception {
+
+
+
+        private void startPayment(PaymentCredentials paymentCredentials) throws Exception {
         Random random = new Random();
         int newRando = random.nextInt(999);
         int txnid = random.nextInt(999999);
@@ -100,7 +110,7 @@ public class PaymentGatewayActivity extends AppCompatActivity {
         newPayIntent.putExtra("txnscamt", "0");
         newPayIntent.putExtra("loginid", paymentCredentials.getLoginId());
         newPayIntent.putExtra("password", paymentCredentials.getPassword());
-        newPayIntent.putExtra("prodid", "YUVRAJ");
+        newPayIntent.putExtra("prodid", "GROCERS");
         newPayIntent.putExtra("txncurr", "INR");
         newPayIntent.putExtra("clientcode", encodeBase64("007"));
         newPayIntent.putExtra("custacc", Common.currentUser.getPhone()+String.valueOf(newRando));
@@ -109,8 +119,8 @@ public class PaymentGatewayActivity extends AppCompatActivity {
         newPayIntent.putExtra("txnid", String.valueOf(txnid));
 
         newPayIntent.putExtra("date", dateVerified);
-        newPayIntent.putExtra("signature_request", "a210a5843fa3542964");
-        newPayIntent.putExtra("signature_response", "ae38fae97cd03f43c3");
+        newPayIntent.putExtra("signature_request", "b8d34bf70959b634e2");
+        newPayIntent.putExtra("signature_response", "8d2f6ceb30ac3130ec");
         newPayIntent.putExtra("discriminator", "All");
         newPayIntent.putExtra("isLive", true);
 //Optinal Parameters
@@ -179,7 +189,7 @@ public class PaymentGatewayActivity extends AppCompatActivity {
 
         ArrayList<String> lst = new ArrayList<String>();
         for (CartItem cartItem : Common.PaymentGatewayOrderDetails.getCartItemList()){
-            lst.add(""+ cartItem.getProductId() +","+cartItem.getProductName()+","+cartItem.getProductSellingPrice()+","+cartItem.getProductQuantity());
+            lst.add(""+ cartItem.getProductId() +","+cartItem.getProductName().substring(0,5)+","+cartItem.getProductSellingPrice()+","+cartItem.getProductQuantity());
         }
 
         int doubleAmt = 0;
@@ -265,4 +275,43 @@ public class PaymentGatewayActivity extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
     }
+
+//    @Override
+//    public void onPaymentSuccess(String s) {
+//        Common.PaymentGatewayOrderDetails.setRpayTransactionId(s);
+//        EventBus.getDefault().postSticky(new OnlinePaymentSuccessFull(true,Common.PaymentGatewayOrderDetails));
+//        startActivity(new Intent(PaymentGatewayActivity.this, HomeActivity.class));
+//        finish();
+//        Toast.makeText(this, "Payment successful   ", Toast.LENGTH_SHORT).show();
+//    }
+//
+//    @Override
+//    public void onPaymentError(int i, String s) {
+//        Toast.makeText(this, "Payment Failed  "+ s, Toast.LENGTH_SHORT).show();
+//    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(PaymentGatewayActivity.this,HomeActivity.class));
+        finish();
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

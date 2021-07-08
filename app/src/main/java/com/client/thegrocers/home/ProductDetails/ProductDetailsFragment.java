@@ -15,19 +15,18 @@ import androidx.fragment.app.Fragment;
 
 import com.asksira.loopingviewpager.LoopingViewPager;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.client.thegrocers.Adapters.ProductDetailsImagesAdapter;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.Database.CartDataSource;
+import com.client.thegrocers.Database.CartDatabase;
+import com.client.thegrocers.Database.CartItem;
+import com.client.thegrocers.Database.LocalCartDataSource;
+import com.client.thegrocers.EventBus.BuyNowClicked;
+import com.client.thegrocers.EventBus.CounterCartEvent;
+import com.client.thegrocers.EventBus.NoAccountButWantToAddToCart;
+import com.client.thegrocers.Model.BuyNowClass;
+import com.client.thegrocers.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.yuvraj.thegroceryapp.Adapters.ProductDetailsImagesAdapter;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.Database.CartDataSource;
-import com.yuvraj.thegroceryapp.Database.CartDatabase;
-import com.yuvraj.thegroceryapp.Database.CartItem;
-import com.yuvraj.thegroceryapp.Database.LocalCartDataSource;
-import com.yuvraj.thegroceryapp.EventBus.BuyNowClicked;
-import com.yuvraj.thegroceryapp.EventBus.CounterCartEvent;
-import com.yuvraj.thegroceryapp.EventBus.NoAccountButWantToAddToCart;
-import com.yuvraj.thegroceryapp.Model.BuyNowClass;
-import com.yuvraj.thegroceryapp.R;
-
 import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
@@ -106,10 +105,6 @@ public class ProductDetailsFragment extends Fragment {
                     cartItem.setProductId(Common.selectedProduct.getId());
                     cartItem.setProductName(Common.selectedProduct.getName());
                     cartItem.setProductImage(Common.selectedProduct.getImage());
-                    cartItem.setPackageSize(Common.selectedProduct.getPackageSize());
-                    cartItem.setLength(Common.selectedProduct.getLength());
-                    cartItem.setHeight(Common.selectedProduct.getHeight());
-                    cartItem.setBreadth(Common.selectedProduct.getBreadth());
                     cartItem.setProductPrice(Double.valueOf(String.valueOf(Common.selectedProduct.getPrice())));
                     cartItem.setProductSellingPrice(Double.valueOf(String.valueOf(Common.selectedProduct.getSellingPrice())));
                     cartItem.setProductQuantity(Integer.parseInt(numberButton.getNumber()));
@@ -202,12 +197,6 @@ public class ProductDetailsFragment extends Fragment {
                     cartItem.setUserPhone(Common.currentUser.getPhone());
                     cartItem.setProductId(Common.selectedProduct.getId());
                     cartItem.setProductName(Common.selectedProduct.getName());
-                    if (Common.selectedProduct.getBreadth() != 0){
-                        cartItem.setBreadth(Common.selectedProduct.getBreadth());
-                        cartItem.setHeight(Common.selectedProduct.getHeight());
-                        cartItem.setLength(Common.selectedProduct.getLength());
-                        cartItem.setPackageSize((float) Common.selectedProduct.getPackageSize());
-                    }
                     cartItem.setProductImage(Common.selectedProduct.getImage());
                     cartItem.setProductPrice(Double.valueOf(String.valueOf(Common.selectedProduct.getPrice())));
                     cartItem.setProductSellingPrice(Double.valueOf(String.valueOf(Common.selectedProduct.getSellingPrice())));

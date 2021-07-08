@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
-import com.yuvraj.thegroceryapp.Database.CartItem;
-import com.yuvraj.thegroceryapp.EventBus.UpdateItemInCart;
-import com.yuvraj.thegroceryapp.R;
+import com.client.thegrocers.Database.CartItem;
+import com.client.thegrocers.EventBus.UpdateItemInCart;
+import com.client.thegrocers.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -28,6 +29,8 @@ public class PlaceOrderAdapter extends RecyclerView.Adapter<PlaceOrderAdapter.Vi
 
     Context context;
     List<CartItem> cartItemList;
+    private int quanty;
+
 
     public PlaceOrderAdapter(Context context, List<CartItem> cartItemList) {
         this.context = context;
@@ -47,14 +50,30 @@ public class PlaceOrderAdapter extends RecyclerView.Adapter<PlaceOrderAdapter.Vi
         holder.txt_product_name.setText(new StringBuilder(cartItemList.get(position).getProductName()));
         holder.txt_product_price.setText(new StringBuilder("")
                 .append(cartItemList.get(position).getProductSellingPrice()));
-        holder.number_button_cart.setNumber(String.valueOf(Integer.parseInt(String.valueOf(cartItemList.get(position).getProductQuantity()))));
-        holder.number_button_cart.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
-            @Override
-            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
-                cartItemList.get(position).setProductQuantity(newValue);
+        quanty = cartItemList.get(position).getProductQuantity();
+        holder.qtyTv.setText(String.valueOf(quanty));
+        holder.incrementBtn.setOnClickListener(v -> {
+            if (quanty <=9){
+                quanty++;
+                holder.qtyTv.setText(String.valueOf(quanty));
+                cartItemList.get(position).setProductQuantity(quanty);
                 EventBus.getDefault().postSticky(new UpdateItemInCart(cartItemList.get(position)));
+            }else {
+                Snackbar.make(v,"Quantity cannot be greater than 10",Snackbar.LENGTH_SHORT).show();
             }
         });
+
+        holder.decrementBtn.setOnClickListener(v -> {
+            if (quanty >1){
+                quanty--;
+                holder.qtyTv.setText(String.valueOf(quanty));
+                cartItemList.get(position).setProductQuantity(quanty);
+                EventBus.getDefault().postSticky(new UpdateItemInCart(cartItemList.get(position)));
+            }else {
+                Snackbar.make(v,"Quantity cannot be greater than 10",Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
@@ -75,8 +94,16 @@ public class PlaceOrderAdapter extends RecyclerView.Adapter<PlaceOrderAdapter.Vi
         TextView txt_product_price;
         @BindView(R.id.txt_product_name_po)
         TextView txt_product_name;
-        @BindView(R.id.number_button_po)
-        ElegantNumberButton number_button_cart;
+
+        @BindView(R.id.po_add_num_btn)
+        ImageView incrementBtn;
+
+        @BindView(R.id.po_number_tv)
+        TextView qtyTv;
+
+        @BindView(R.id.po_decrement_num_btn)
+        ImageView decrementBtn;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             unbinder = ButterKnife.bind(this,itemView);

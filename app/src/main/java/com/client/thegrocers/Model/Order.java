@@ -1,31 +1,34 @@
 package com.client.thegrocers.Model;
 
-import com.yuvraj.thegroceryapp.Database.CartItem;
+
+import com.client.thegrocers.Database.CartItem;
 
 import java.util.List;
 
 public class Order {
-    private String userId,userName,userPhone,transactionId;
+    private String userId,userName,userPhone,userEmail,transactionId,rpayTransactionId;
     private double lat,lng,totalPayment,finalPayment;
     private boolean cod;
     private int discount;
     private List<CartItem> cartItemList;
     private Long createDate;
     private long deliveryDate;
-    private float finalWeight,finalHeight,finalBreadth,finalLength;
     private String orderNumber;
     private int orderStatus;
     private AddressModel address;
+    private String specialInstructions;
 
 
     public Order() {
     }
 
-    public Order(String userId, String userName, String userPhone, String transactionId, double lat, double lng, double totalPayment, double finalPayment, boolean cod, int discount, List<CartItem> cartItemList, Long createDate, long deliveryDate, float finalWeight, float finalHeight, float finalBreadth, float finalLength, String orderNumber, int orderStatus, AddressModel address) {
+    public Order(String userId, String userName, String userPhone, String userEmail, String transactionId, String rpayTransactionId, double lat, double lng, double totalPayment, double finalPayment, boolean cod, int discount, List<CartItem> cartItemList, Long createDate, String orderNumber, int orderStatus, AddressModel address, String specialInstructions) {
         this.userId = userId;
         this.userName = userName;
         this.userPhone = userPhone;
+        this.userEmail = userEmail;
         this.transactionId = transactionId;
+        this.rpayTransactionId = rpayTransactionId;
         this.lat = lat;
         this.lng = lng;
         this.totalPayment = totalPayment;
@@ -35,13 +38,11 @@ public class Order {
         this.cartItemList = cartItemList;
         this.createDate = createDate;
         this.deliveryDate = deliveryDate;
-        this.finalWeight = finalWeight;
-        this.finalHeight = finalHeight;
-        this.finalBreadth = finalBreadth;
-        this.finalLength = finalLength;
+
         this.orderNumber = orderNumber;
         this.orderStatus = orderStatus;
         this.address = address;
+        this.specialInstructions = specialInstructions;
     }
 
     public String getUserId() {
@@ -68,12 +69,28 @@ public class Order {
         this.userPhone = userPhone;
     }
 
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
     public String getTransactionId() {
         return transactionId;
     }
 
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
+    }
+
+    public String getRpayTransactionId() {
+        return rpayTransactionId;
+    }
+
+    public void setRpayTransactionId(String rpayTransactionId) {
+        this.rpayTransactionId = rpayTransactionId;
     }
 
     public double getLat() {
@@ -148,37 +165,6 @@ public class Order {
         this.deliveryDate = deliveryDate;
     }
 
-    public float getFinalWeight() {
-        return finalWeight;
-    }
-
-    public void setFinalWeight(float finalWeight) {
-        this.finalWeight = finalWeight;
-    }
-
-    public float getFinalHeight() {
-        return finalHeight;
-    }
-
-    public void setFinalHeight(float finalHeight) {
-        this.finalHeight = finalHeight;
-    }
-
-    public float getFinalBreadth() {
-        return finalBreadth;
-    }
-
-    public void setFinalBreadth(float finalBreadth) {
-        this.finalBreadth = finalBreadth;
-    }
-
-    public float getFinalLength() {
-        return finalLength;
-    }
-
-    public void setFinalLength(float finalLength) {
-        this.finalLength = finalLength;
-    }
 
     public String getOrderNumber() {
         return orderNumber;
@@ -202,5 +188,13 @@ public class Order {
 
     public void setAddress(AddressModel address) {
         this.address = address;
+    }
+
+    public String getSpecialInstructions() {
+        return specialInstructions;
+    }
+
+    public void setSpecialInstructions(String specialInstructions) {
+        this.specialInstructions = specialInstructions;
     }
 }

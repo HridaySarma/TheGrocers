@@ -1,6 +1,7 @@
 package com.client.thegrocers.EventBus;
 
-import com.yuvraj.thegroceryapp.Model.Order;
+
+import com.client.thegrocers.Model.Order;
 
 public class OnlinePaymentSuccessFull {
     boolean success;

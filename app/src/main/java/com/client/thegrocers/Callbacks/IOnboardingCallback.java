@@ -1,6 +1,7 @@
 package com.client.thegrocers.Callbacks;
 
-import com.yuvraj.thegroceryapp.Model.OnboardingModel;
+
+import com.client.thegrocers.Model.OnboardingModel;
 
 import java.util.List;
 

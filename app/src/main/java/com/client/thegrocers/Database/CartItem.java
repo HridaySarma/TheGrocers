@@ -5,8 +5,10 @@ import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 
+import java.io.Serializable;
+
 @Entity(tableName = "Cart",primaryKeys = {"uid","productId"})
-public class CartItem {
+public class CartItem implements Serializable {
 
     @NonNull
     @ColumnInfo(name = "productId")
@@ -34,18 +36,6 @@ public class CartItem {
     @ColumnInfo(name = "uid")
     private String uid;
 
-    @ColumnInfo(name = "packageSize")
-    private float packageSize;
-
-
-    @ColumnInfo(name = "height")
-    private float height;
-
-    @ColumnInfo(name = "breadth")
-    private float breadth;
-
-    @ColumnInfo(name = "length")
-    private float length;
 
 
     @NonNull
@@ -114,37 +104,9 @@ public class CartItem {
         this.productSellingPrice = productSellingPrice;
     }
 
-    public float getPackageSize() {
-        return packageSize;
-    }
 
-    public void setPackageSize(float packageSize) {
-        this.packageSize = packageSize;
-    }
 
-    public float getHeight() {
-        return height;
-    }
 
-    public void setHeight(float height) {
-        this.height = height;
-    }
-
-    public float getBreadth() {
-        return breadth;
-    }
-
-    public void setBreadth(float breadth) {
-        this.breadth = breadth;
-    }
-
-    public float getLength() {
-        return length;
-    }
-
-    public void setLength(float length) {
-        this.length = length;
-    }
 
     @Override
     public boolean equals(@Nullable Object obj) {
@@ -156,5 +118,6 @@ public class CartItem {
         CartItem cartItem = (CartItem)obj;
         return cartItem.getProductId().equals(this.productId);
     }
+
 
 }

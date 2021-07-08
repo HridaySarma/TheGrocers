@@ -8,8 +8,8 @@ import android.widget.ImageView;
 
 import com.asksira.loopingviewpager.LoopingPagerAdapter;
 import com.bumptech.glide.Glide;
-import com.yuvraj.thegroceryapp.Model.ImageModel;
-import com.yuvraj.thegroceryapp.R;
+import com.client.thegrocers.Model.ImageModel;
+import com.client.thegrocers.R;
 
 import java.util.List;
 

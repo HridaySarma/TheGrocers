@@ -4,13 +4,14 @@ import java.util.List;
 
 public class CategoryModel {
 
-    private String name,image,key;
+    private String name,image,key,icon;
     private List<ProductModel> products;
 
-    public CategoryModel(String name, String image, String key, List<ProductModel> products) {
+    public CategoryModel(String name, String image, String key, String icon, List<ProductModel> products) {
         this.name = name;
         this.image = image;
         this.key = key;
+        this.icon = icon;
         this.products = products;
     }
 
@@ -47,5 +48,13 @@ public class CategoryModel {
 
     public void setProducts(List<ProductModel> products) {
         this.products = products;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }

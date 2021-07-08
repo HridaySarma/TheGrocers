@@ -5,11 +5,11 @@ import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.Database.CartDataSource;
-import com.yuvraj.thegroceryapp.Database.CartDatabase;
-import com.yuvraj.thegroceryapp.Database.CartItem;
-import com.yuvraj.thegroceryapp.Database.LocalCartDataSource;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.Database.CartDataSource;
+import com.client.thegrocers.Database.CartDatabase;
+import com.client.thegrocers.Database.CartItem;
+import com.client.thegrocers.Database.LocalCartDataSource;
 
 import java.util.List;
 

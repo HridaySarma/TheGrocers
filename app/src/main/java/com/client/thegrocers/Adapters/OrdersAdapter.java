@@ -12,13 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.yuvraj.thegroceryapp.Callbacks.IItemClick;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.EventBus.OrderDetailsClicked;
-import com.yuvraj.thegroceryapp.EventBus.OrderRequestForCancel;
-import com.yuvraj.thegroceryapp.EventBus.OrderRequestForReturn;
-import com.yuvraj.thegroceryapp.Model.Order;
-import com.yuvraj.thegroceryapp.R;
+import com.client.thegrocers.Callbacks.IItemClick;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.EventBus.OrderDetailsClicked;
+import com.client.thegrocers.EventBus.OrderRequestForCancel;
+import com.client.thegrocers.EventBus.OrderRequestForReturn;
+import com.client.thegrocers.Model.Order;
+import com.client.thegrocers.R;
 
 import org.greenrobot.eventbus.EventBus;
 

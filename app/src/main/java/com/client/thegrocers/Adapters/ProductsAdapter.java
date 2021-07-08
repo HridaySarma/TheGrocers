@@ -15,18 +15,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.client.thegrocers.Callbacks.IItemClick;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.Database.CartDataSource;
+import com.client.thegrocers.Database.CartDatabase;
+import com.client.thegrocers.Database.CartItem;
+import com.client.thegrocers.Database.LocalCartDataSource;
+import com.client.thegrocers.EventBus.CounterCartEvent;
+import com.client.thegrocers.EventBus.NoAccountButWantToAddToCart;
+import com.client.thegrocers.EventBus.ProductClicked;
+import com.client.thegrocers.EventBus.UpdateItemInCart;
+import com.client.thegrocers.Model.ProductModel;
+import com.client.thegrocers.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.yuvraj.thegroceryapp.Callbacks.IItemClick;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.Database.CartDataSource;
-import com.yuvraj.thegroceryapp.Database.CartDatabase;
-import com.yuvraj.thegroceryapp.Database.CartItem;
-import com.yuvraj.thegroceryapp.Database.LocalCartDataSource;
-import com.yuvraj.thegroceryapp.EventBus.CounterCartEvent;
-import com.yuvraj.thegroceryapp.EventBus.NoAccountButWantToAddToCart;
-import com.yuvraj.thegroceryapp.EventBus.ProductClicked;
-import com.yuvraj.thegroceryapp.Model.ProductModel;
-import com.yuvraj.thegroceryapp.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -47,6 +50,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     List<ProductModel> productModelList;
     private CompositeDisposable compositeDisposable;
     private CartDataSource cartDataSource;
+    private int quanty= 1;
 
     public ProductsAdapter(Context context, List<ProductModel> productModelList) {
         this.context = context;
@@ -100,15 +104,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                     cartItem.setProductId(productModelList.get(position).getId());
                     cartItem.setProductName(productModelList.get(position).getName());
                     cartItem.setProductImage(productModelList.get(position).getImage());
-                    if (productModelList.get(position).getBreadth() != 0){
-                        cartItem.setBreadth(productModelList.get(position).getBreadth());
-                        cartItem.setHeight(productModelList.get(position).getHeight());
-                        cartItem.setLength(productModelList.get(position).getLength());
-                        cartItem.setPackageSize((float) productModelList.get(position).getPackageSize());
-                    }
+
                     cartItem.setProductPrice(Double.valueOf(String.valueOf(productModelList.get(position).getPrice())));
                     cartItem.setProductSellingPrice(Double.valueOf(String.valueOf(productModelList.get(position).getSellingPrice())));
-                    cartItem.setProductQuantity(1);
+                    cartItem.setProductQuantity(quanty);
 
                     cartDataSource.getItemWithAllOptionsInCart(Common.currentUser.getUid(),
                             cartItem.getProductId())
@@ -184,6 +183,26 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                 }
             }
         });
+
+        holder.qtyTv.setText(String.valueOf(quanty));
+        holder.incrementBtn.setOnClickListener(v -> {
+            if (quanty <=9){
+                quanty++;
+                holder.qtyTv.setText(String.valueOf(quanty));
+            }else {
+                Snackbar.make(v,"Quantity cannot be greater than 10",Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.decrementBtn.setOnClickListener(v -> {
+            if (quanty >1){
+                quanty--;
+                holder.qtyTv.setText(String.valueOf(quanty));
+            }else {
+                Snackbar.make(v,"Quantity cannot be greater than 10",Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 
@@ -208,6 +227,17 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         IItemClick iItemClickListener;
         @BindView(R.id.quantity_details_product)
         TextView quantityDetailsProduct;
+
+        @BindView(R.id.prod_add_num_btn)
+        ImageView incrementBtn;
+
+        @BindView(R.id.prod_number_tv)
+        TextView qtyTv;
+
+        @BindView(R.id.prod_decrement_num_btn)
+        ImageView decrementBtn;
+
+
 
         public void setiItemClickListener(IItemClick iItemClickListener) {
             this.iItemClickListener = iItemClickListener;

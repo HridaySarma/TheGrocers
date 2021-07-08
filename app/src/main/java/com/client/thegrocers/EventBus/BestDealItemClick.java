@@ -1,6 +1,7 @@
 package com.client.thegrocers.EventBus;
 
-import com.yuvraj.thegroceryapp.Model.BestDealModel;
+
+import com.client.thegrocers.Model.BestDealModel;
 
 public class BestDealItemClick {
    boolean success;

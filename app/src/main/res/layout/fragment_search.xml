@@ -35,7 +35,7 @@
             <com.arlib.floatingsearchview.FloatingSearchView
                 android:id="@+id/floating_search_view_any_prods"
                 android:layout_width="0dp"
-                android:layout_weight="9"
+                android:layout_weight="6"
                 android:layout_height="50dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
@@ -49,6 +49,51 @@
                 android:background="#8fff"
                 android:elevation="5dp"
                 app:floatingSearch_close_search_on_keyboard_dismiss="true"/>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="50dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/filter_cv"
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_centerInParent="true"
+                    app:contentPadding="6dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Filters"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/varela_round"
+                            android:textColor="#000"
+                            />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_baseline_filter_list_24"
+                            />
+
+                    </LinearLayout>
+
+
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
 
 
         </LinearLayout>

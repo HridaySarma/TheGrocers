@@ -10,10 +10,12 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.yuvraj.thegroceryapp.Adapters.MainCategoryAdapter;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.R;
-import com.yuvraj.thegroceryapp.home.HomeViewModel;
+
+import com.client.thegrocers.Adapters.MainCategoryAdapter;
+import com.client.thegrocers.Callbacks.ICurrentFragment;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.R;
+import com.client.thegrocers.home.HomeViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +34,8 @@ public class CategoriesFragment extends Fragment {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View view = inflater.inflate(R.layout.fragment_categories, container, false);
         Common.CurrentFragment = "Categories";
+        ICurrentFragment iCurrentFragment  = (ICurrentFragment) getContext();
+        iCurrentFragment.currentFragment("Categories");
         unbinder = ButterKnife.bind(this,view);
         initRecyclerView();
         return view;

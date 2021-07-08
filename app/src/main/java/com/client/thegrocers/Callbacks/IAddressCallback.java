@@ -1,7 +1,8 @@
 package com.client.thegrocers.Callbacks;
 
 
-import com.yuvraj.thegroceryapp.Model.AddressModel;
+
+import com.client.thegrocers.Model.AddressModel;
 
 import java.util.List;
 

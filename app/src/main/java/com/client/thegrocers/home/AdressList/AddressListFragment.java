@@ -15,14 +15,15 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.yuvraj.thegroceryapp.Adapters.AddressAdapter;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.EventBus.AddNewAddressClicke;
-import com.yuvraj.thegroceryapp.EventBus.AddressSelected;
-import com.yuvraj.thegroceryapp.EventBus.ProceedToCheckoutClicked;
-import com.yuvraj.thegroceryapp.Mapbox.MapboxKey;
-import com.yuvraj.thegroceryapp.Model.AddressModel;
-import com.yuvraj.thegroceryapp.R;
+import com.client.thegrocers.Adapters.AddressAdapter;
+import com.client.thegrocers.Callbacks.ICurrentFragment;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.EventBus.AddNewAddressClicke;
+import com.client.thegrocers.EventBus.AddressSelected;
+import com.client.thegrocers.EventBus.ProceedToCheckoutClicked;
+import com.client.thegrocers.Mapbox.MapboxKey;
+import com.client.thegrocers.Model.AddressModel;
+import com.client.thegrocers.R;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -55,6 +56,8 @@ public class AddressListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_address_list, container, false);
         unbinder = ButterKnife.bind(this,view);
         Common.CurrentFragment = "AddressList";
+        ICurrentFragment iCurrentFragment  = (ICurrentFragment) getContext();
+        iCurrentFragment.currentFragment("Other");
         mapboxKey= new MapboxKey();
         if (Common.currentUser != null){
             initViews();

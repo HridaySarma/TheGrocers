@@ -50,15 +50,16 @@
             android:id="@+id/recepient_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:met_textColor="#fff"
+            app:met_textColor="#000"
             android:hint="Recepient's Name"
+            android:textColorHint="#000"
             android:layout_margin="10dp"
             android:textSize="18sp"
             app:met_floatingLabel="highlight"
             app:met_clearButton="true"
+            android:paddingStart="10dp"
             app:met_maxCharacters="30"
             app:met_primaryColor="?colorPrimary"
-            app:met_baseColor="@android:color/white"
             app:met_singleLineEllipsis="true" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -67,12 +68,12 @@
             android:layout_height="wrap_content"
             android:hint="Address"
             android:layout_margin="10dp"
-            app:met_textColor="#fff"
+            app:met_textColor="#000"
+            android:textColorHint="#000"
             android:textSize="18sp"
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="80"
             app:met_primaryColor="?colorPrimary"
-            app:met_baseColor="@android:color/white"
             app:met_singleLineEllipsis="true" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -85,8 +86,8 @@
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="20"
             app:met_primaryColor="?colorPrimary"
-            app:met_baseColor="@android:color/white"
-            app:met_textColor="#fff"
+            app:met_textColor="#000"
+            android:textColorHint="#000"
             app:met_singleLineEllipsis="true" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -98,9 +99,9 @@
             android:textSize="18sp"
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="20"
-            app:met_textColor="#fff"
+            app:met_textColor="#000"
+            android:textColorHint="#000"
             app:met_primaryColor="?colorPrimary"
-            app:met_baseColor="@android:color/white"
             app:met_singleLineEllipsis="true" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -110,11 +111,11 @@
             android:hint="State"
             android:layout_margin="10dp"
             android:textSize="18sp"
-            app:met_textColor="#fff"
+            app:met_textColor="#000"
+            android:textColorHint="#000"
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="20"
             app:met_primaryColor="?colorPrimary"
-            app:met_baseColor="@android:color/white"
             app:met_singleLineEllipsis="true" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -124,11 +125,11 @@
             android:hint="City/Town"
             android:layout_margin="10dp"
             android:textSize="18sp"
-            app:met_textColor="#fff"
+            app:met_textColor="#000"
+            android:textColorHint="#000"
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="20"
             app:met_primaryColor="?colorPrimary"
-            app:met_baseColor="@android:color/white"
             app:met_singleLineEllipsis="true" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -136,13 +137,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Pincode"
-            app:met_textColor="#fff"
+            app:met_textColor="#000"
+            android:textColorHint="#000"
             android:layout_margin="10dp"
             android:textSize="18sp"
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="20"
             app:met_primaryColor="?colorPrimary"
-            app:met_baseColor="@android:color/white"
             app:met_singleLineEllipsis="true"
             />
 

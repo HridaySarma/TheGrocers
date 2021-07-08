@@ -2,7 +2,9 @@ package com.client.thegrocers.home;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -13,6 +15,60 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.client.thegrocers.Callbacks.ICurrentFragment;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.Database.CartDataSource;
+import com.client.thegrocers.Database.CartDatabase;
+import com.client.thegrocers.Database.LocalCartDataSource;
+import com.client.thegrocers.EventBus.AddNewAddressClicke;
+import com.client.thegrocers.EventBus.AfterOrderPlaced;
+import com.client.thegrocers.EventBus.BestDealItemClick;
+import com.client.thegrocers.EventBus.BuyNowClicked;
+import com.client.thegrocers.EventBus.CategoryClicked;
+import com.client.thegrocers.EventBus.CurrentLocationClickedToGetAddress;
+import com.client.thegrocers.EventBus.GoToHomeFragment;
+import com.client.thegrocers.EventBus.LocationAddedNowBackToAddressList;
+import com.client.thegrocers.EventBus.LoginStatus;
+import com.client.thegrocers.EventBus.NewLocationUpdatedNowPlaceToAddNewLocation;
+import com.client.thegrocers.EventBus.NewSearchClicked;
+import com.client.thegrocers.EventBus.NoAccountButWantToAddToCart;
+import com.client.thegrocers.EventBus.OnlinePaymentSuccessFull;
+import com.client.thegrocers.EventBus.OrderDetailsClicked;
+import com.client.thegrocers.EventBus.PlaceOrderClicked;
+import com.client.thegrocers.EventBus.PopularCategoryClick;
+import com.client.thegrocers.EventBus.ProceedToCheckoutClicked;
+import com.client.thegrocers.EventBus.ProductClicked;
+import com.client.thegrocers.EventBus.ProductClickedInAllProducts;
+import com.client.thegrocers.EventBus.TrackOrderClicked;
+import com.client.thegrocers.EventBus.ViewAllCatsClicked;
+import com.client.thegrocers.LiveTraking.LiveTrackingActivity;
+import com.client.thegrocers.Model.CategoryModel;
+import com.client.thegrocers.Model.Order;
+import com.client.thegrocers.Model.ProductModel;
+import com.client.thegrocers.Model.SingletonProductModel;
+import com.client.thegrocers.Model.UserModel;
+import com.client.thegrocers.R;
+import com.client.thegrocers.UpdatedPackages.NewHome.NewHomeFragment.NewHomeFragment;
+import com.client.thegrocers.UpdatedPackages.NewOrders.BaseOrdersFragment;
+import com.client.thegrocers.UpdatedPackages.NewProductDetails.NewProductDetailsFragment;
+import com.client.thegrocers.UpdatedPackages.PlacePicker.PlacePickerFragment;
+import com.client.thegrocers.home.AddAddress.AddAddressFragment;
+import com.client.thegrocers.home.AdressList.AddressListFragment;
+import com.client.thegrocers.home.AfterOrderPlaced.AfterOrderPlacedFragment;
+import com.client.thegrocers.home.Cart.CartFragment;
+import com.client.thegrocers.home.Categories.CategoriesFragment;
+import com.client.thegrocers.home.HomeFragment.HomeFragment;
+import com.client.thegrocers.home.Login.LoginFragment;
+import com.client.thegrocers.home.MAP.CurrentLocationPickFragment;
+import com.client.thegrocers.home.Orders.OrderDetails;
+import com.client.thegrocers.home.Orders.OrdersFragment;
+import com.client.thegrocers.home.Orders.OrdersViewModel;
+import com.client.thegrocers.home.PlaceOrder.PlaceOrderFragment;
+import com.client.thegrocers.home.ProductDetails.ProductDetailsFragment;
+import com.client.thegrocers.home.Products.ProductsFragment;
+import com.client.thegrocers.home.Search.SearchFragment;
+import com.client.thegrocers.home.SingleBuyNow.BuyNowFragment;
+import com.google.android.libraries.places.api.Places;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,50 +81,7 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.Database.CartDataSource;
-import com.yuvraj.thegroceryapp.Database.CartDatabase;
-import com.yuvraj.thegroceryapp.Database.LocalCartDataSource;
-import com.yuvraj.thegroceryapp.EventBus.AddNewAddressClicke;
-import com.yuvraj.thegroceryapp.EventBus.AfterOrderPlaced;
-import com.yuvraj.thegroceryapp.EventBus.BestDealItemClick;
-import com.yuvraj.thegroceryapp.EventBus.BuyNowClicked;
-import com.yuvraj.thegroceryapp.EventBus.CategoryClicked;
-import com.yuvraj.thegroceryapp.EventBus.CurrentLocationClickedToGetAddress;
-import com.yuvraj.thegroceryapp.EventBus.GoToHomeFragment;
-import com.yuvraj.thegroceryapp.EventBus.LocationAddedNowBackToAddressList;
-import com.yuvraj.thegroceryapp.EventBus.LoginStatus;
-import com.yuvraj.thegroceryapp.EventBus.NewLocationUpdatedNowPlaceToAddNewLocation;
-import com.yuvraj.thegroceryapp.EventBus.NoAccountButWantToAddToCart;
-import com.yuvraj.thegroceryapp.EventBus.OnlinePaymentSuccessFull;
-import com.yuvraj.thegroceryapp.EventBus.OrderDetailsClicked;
-import com.yuvraj.thegroceryapp.EventBus.PlaceOrderClicked;
-import com.yuvraj.thegroceryapp.EventBus.PopularCategoryClick;
-import com.yuvraj.thegroceryapp.EventBus.ProceedToCheckoutClicked;
-import com.yuvraj.thegroceryapp.EventBus.ProductClicked;
-import com.yuvraj.thegroceryapp.EventBus.ProductClickedInAllProducts;
-import com.yuvraj.thegroceryapp.Model.CategoryModel;
-import com.yuvraj.thegroceryapp.Model.Order;
-import com.yuvraj.thegroceryapp.Model.ProductModel;
-import com.yuvraj.thegroceryapp.Model.SingletonProductModel;
-import com.yuvraj.thegroceryapp.Model.UserModel;
-import com.yuvraj.thegroceryapp.R;
-import com.yuvraj.thegroceryapp.home.AddAddress.AddAddressFragment;
-import com.yuvraj.thegroceryapp.home.AdressList.AddressListFragment;
-import com.yuvraj.thegroceryapp.home.AfterOrderPlaced.AfterOrderPlacedFragment;
-import com.yuvraj.thegroceryapp.home.Cart.CartFragment;
-import com.yuvraj.thegroceryapp.home.Categories.CategoriesFragment;
-import com.yuvraj.thegroceryapp.home.HomeFragment.HomeFragment;
-import com.yuvraj.thegroceryapp.home.Login.LoginFragment;
-import com.yuvraj.thegroceryapp.home.MAP.CurrentLocationPickFragment;
-import com.yuvraj.thegroceryapp.home.Orders.OrderDetails;
-import com.yuvraj.thegroceryapp.home.Orders.OrdersFragment;
-import com.yuvraj.thegroceryapp.home.Orders.OrdersViewModel;
-import com.yuvraj.thegroceryapp.home.PlaceOrder.PlaceOrderFragment;
-import com.yuvraj.thegroceryapp.home.ProductDetails.ProductDetailsFragment;
-import com.yuvraj.thegroceryapp.home.Products.ProductsFragment;
-import com.yuvraj.thegroceryapp.home.Search.SearchFragment;
-import com.yuvraj.thegroceryapp.home.SingleBuyNow.BuyNowFragment;
+import com.pusher.pushnotifications.PushNotifications;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -86,7 +99,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import me.ibrahimsn.lib.NiceBottomBar;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements ICurrentFragment {
 
     Unbinder unbinder;
     @BindView(R.id.bottomBar)
@@ -115,8 +128,12 @@ public class HomeActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         ordersViewModel = ViewModelProviders.of(this).get(OrdersViewModel.class);
         cartDataSource = new LocalCartDataSource(CartDatabase.getInstance(this).cartDao());
-        HomeFragment homeFragment = new HomeFragment();
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), "AIzaSyD8KM8oPRgz9rIM_STxjNB4lDisvlcmIWU");
+        }
+        NewHomeFragment homeFragment = new NewHomeFragment();
         changeFragment(homeFragment,true);
+
 
         if (Common.currentUser != null){
             List<Order> orderList = new ArrayList<>();
@@ -146,7 +163,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onItemSelect(int pos) {
                 switch (pos){
                     case 0:
-                        HomeFragment homeFragment = new HomeFragment();
+                        NewHomeFragment homeFragment = new NewHomeFragment();
                         changeFragment(homeFragment,true);
                         break;
                     case 1:
@@ -161,6 +178,10 @@ public class HomeActivity extends AppCompatActivity {
                     case 3:
                         OrdersFragment ordersFragment = new OrdersFragment();
                         changeFragment(ordersFragment,true);
+                        break;
+                    case 4:
+                        BaseOrdersFragment baseOrdersFragment = new BaseOrdersFragment();
+                        changeFragment(baseOrdersFragment,true);
                         break;
                 }
             }
@@ -249,6 +270,12 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if (Common.CurrentFragment.equals("Home")){
+            finish();
+        }else if (Common.CurrentFragment.equals("ProductDetails")){
+            ProductsFragment productsFragment = new ProductsFragment();
+            changeFragment(productsFragment,false);
+        }else
         if (getFragmentManager().getBackStackEntryCount() > 0 ){
             getFragmentManager().popBackStackImmediate();
         } else {
@@ -293,7 +320,7 @@ public class HomeActivity extends AppCompatActivity {
     @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
     public void onProductClicked(ProductClicked event){
         if (event.isSuccess()){
-            ProductDetailsFragment productDetailsFragment = new ProductDetailsFragment();
+            NewProductDetailsFragment productDetailsFragment = new NewProductDetailsFragment();
             changeFragment(productDetailsFragment,true);
             EventBus.getDefault().removeStickyEvent(ProductClicked.class);
         }
@@ -313,7 +340,7 @@ public class HomeActivity extends AppCompatActivity {
     @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
     public void onLoggedInSuccessFully(LoginStatus event){
         if (event.isSuccess()){
-            HomeFragment homeFragment = new HomeFragment();
+            NewHomeFragment homeFragment = new NewHomeFragment();
             changeFragment(homeFragment,true);
             EventBus.getDefault().removeStickyEvent(LoginStatus.class);
 //            if (Common.selectedProduct != null){
@@ -400,7 +427,7 @@ public class HomeActivity extends AppCompatActivity {
     @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
     public void GoToHomeFragment(GoToHomeFragment event){
         if(event.isSuccess()){
-            HomeFragment homeFragment = new HomeFragment();
+            NewHomeFragment homeFragment = new NewHomeFragment();
             changeFragment(homeFragment,true);
             EventBus.getDefault().removeStickyEvent(GoToHomeFragment.class);
         }
@@ -424,7 +451,7 @@ public class HomeActivity extends AppCompatActivity {
     @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
     public void onSelectCurrentLocationClicked(CurrentLocationClickedToGetAddress event){
         if(event.isSuccess()){
-            CurrentLocationPickFragment currentLocationPickFragment = new CurrentLocationPickFragment();
+            PlacePickerFragment currentLocationPickFragment = new PlacePickerFragment();
             changeFragment(currentLocationPickFragment,false);
             EventBus.getDefault().removeStickyEvent(CurrentLocationClickedToGetAddress.class);
         }
@@ -458,7 +485,7 @@ public class HomeActivity extends AppCompatActivity {
                                                             Common.selectedProduct = itemSnapshot.getValue(ProductModel.class);
                                                             Common.selectedProduct.setKey(Integer.parseInt(itemSnapshot.getKey()));
                                                         }
-                                                        ProductDetailsFragment productDetailsFragment = new ProductDetailsFragment();
+                                                        NewProductDetailsFragment productDetailsFragment = new NewProductDetailsFragment();
                                                         changeFragment(productDetailsFragment,true);
                                                         alertDialog.dismiss();
                                                     }else {
@@ -599,5 +626,44 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
+    public void onSearchClickedNew(NewSearchClicked event){
+        if (event.isSuccess()){
+            bottomBar.setActiveItem(2);
+            SearchFragment searchFragment = new SearchFragment();
+            changeFragment(searchFragment,false);
+            EventBus.getDefault().removeStickyEvent(NewSearchClicked.class);
+        }
+    }
+    @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
+    public void onViewAllCatsClicked(ViewAllCatsClicked event){
+        if (event.isSuccess()){
+            bottomBar.setActiveItem(1);
+            CategoriesFragment categoriesFragment = new CategoriesFragment();
+            changeFragment(categoriesFragment,false);
+            EventBus.getDefault().removeStickyEvent(ViewAllCatsClicked.class);
+        }
+    }
+
+
+    @Override
+    public void currentFragment(String currentFragmentName) {
+        Common.CurrentFragment = currentFragmentName;
+        if (currentFragmentName.equals("Home") || currentFragmentName.equals("Search") || currentFragmentName.equals("Categories") || currentFragmentName.equals("Orders")){
+            bottomBar.setVisibility(View.VISIBLE);
+
+        }else {
+            bottomBar.setVisibility(View.GONE);
+        }
+    }
+
+    @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
+    public void OnTrackOrderClicked(TrackOrderClicked event){
+        if (event.isSuccess()){
+            Intent intent = new Intent(HomeActivity.this, LiveTrackingActivity.class);
+            intent.putExtra("OrderData", event.getOngoingOrdersModel());
+            startActivity(intent);
+        }
+    }
 
 }

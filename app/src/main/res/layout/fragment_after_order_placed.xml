@@ -15,15 +15,15 @@
         android:id="@+id/success_dialog_of_order"
         android:layout_height="match_parent">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="match_parent"
-            app:lottie_fileName="orderplaced.json"
-            android:layout_height="400dp"
-            app:lottie_enableMergePathsForKitKatAndAbove="true"
-            android:layout_margin="20dp"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            />
+<!--        <com.airbnb.lottie.LottieAnimationView-->
+<!--            android:layout_width="match_parent"-->
+<!--            app:lottie_fileName="orderplaced.json"-->
+<!--            android:layout_height="400dp"-->
+<!--            app:lottie_enableMergePathsForKitKatAndAbove="true"-->
+<!--            android:layout_margin="20dp"-->
+<!--            app:lottie_autoPlay="true"-->
+<!--            app:lottie_loop="true"-->
+<!--            />-->
 
 
 

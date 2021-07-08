@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item android:drawable="@color/pitchColor"/>
+<!--    <item>-->
+<!--        <bitmap android:src="@drawable/bebe" android:gravity="center" android:alpha="0.1"/>-->
+<!--    </item>-->
+
+    <item android:top="-00dp"
+        android:bottom="30dp"
+        android:left="0dp"
+        android:right="00dp">
+
+
+        <rotate
+            android:fromDegrees="0"
+            android:pivotX="180%"
+            android:pivotY="190%">
+
+
+            <shape
+                android:shape="rectangle">
+
+                <solid
+                    android:color="#fff"/>
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

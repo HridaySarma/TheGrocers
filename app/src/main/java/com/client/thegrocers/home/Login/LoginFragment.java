@@ -16,6 +16,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.client.thegrocers.Callbacks.ICurrentFragment;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.Common.PrefsUtills;
+import com.client.thegrocers.EventBus.LoginStatus;
+import com.client.thegrocers.Model.UserModel;
+import com.client.thegrocers.R;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,11 +39,6 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.Common.PrefsUtills;
-import com.yuvraj.thegroceryapp.EventBus.LoginStatus;
-import com.yuvraj.thegroceryapp.Model.UserModel;
-import com.yuvraj.thegroceryapp.R;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -78,6 +79,8 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
+        ICurrentFragment iCurrentFragment  = (ICurrentFragment) getContext();
+        iCurrentFragment.currentFragment("Other");
         init();
         return view;
     }

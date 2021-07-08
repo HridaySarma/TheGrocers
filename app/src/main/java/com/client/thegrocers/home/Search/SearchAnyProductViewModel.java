@@ -4,13 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.client.thegrocers.Callbacks.IAnyProductCallback;
+import com.client.thegrocers.Common.Common;
+import com.client.thegrocers.Model.SingletonProductModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.yuvraj.thegroceryapp.Callbacks.IAnyProductCallback;
-import com.yuvraj.thegroceryapp.Common.Common;
-import com.yuvraj.thegroceryapp.Model.SingletonProductModel;
 
 import java.util.ArrayList;
 import java.util.List;

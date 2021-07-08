@@ -1,7 +1,7 @@
 package com.client.thegrocers.EventBus;
 
 
-import com.yuvraj.thegroceryapp.Database.CartItem;
+import com.client.thegrocers.Database.CartItem;
 
 public class UpdateItemInCart {
     private CartItem cartItem;
