@@ -271,8 +271,13 @@ public class NewProductDetailsFragment extends Fragment {
         });
 
         binding.writeAReviewTvBtn.setOnClickListener(v ->{
-            ReviewBottomSheetDialogFragment fragmentReviewBottomSheetDialogBinding = new ReviewBottomSheetDialogFragment();
-            fragmentReviewBottomSheetDialogBinding.show(getChildFragmentManager(),"ReviewBottomSheet");
+            if (Common.currentUser != null){
+                ReviewBottomSheetDialogFragment fragmentReviewBottomSheetDialogBinding = new ReviewBottomSheetDialogFragment();
+                fragmentReviewBottomSheetDialogBinding.show(getChildFragmentManager(),"ReviewBottomSheet");
+            }else {
+                EventBus.getDefault().postSticky(new NoAccountButWantToAddToCart(true,true));
+            }
+
         });
     }
 
