@@ -11,7 +11,7 @@
         android:id="@+id/edt_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
+        android:hint="First Name"
         android:layout_margin="10dp"
         android:textSize="18sp"
         app:met_baseColor="@android:color/secondary_text_light"
@@ -21,10 +21,10 @@
         app:met_singleLineEllipsis="true" />
 
     <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/edt_name"
+        android:id="@+id/edt_last_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
+        android:hint="Last Name"
         android:layout_margin="10dp"
         android:textSize="18sp"
         app:met_baseColor="@android:color/secondary_text_light"
@@ -33,21 +33,19 @@
         app:met_primaryColor="?colorAccent"
         app:met_singleLineEllipsis="true" />
 
-    <EditText
-        android:id="@+id/edt_last_name"
-        android:hint="Last Name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        />
-
-    <EditText
+    <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edt_phone"
-        android:hint="Phone Number"
-        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Phone Number"
+        android:inputType="number"
+        android:layout_margin="10dp"
+        android:textSize="18sp"
+        app:met_baseColor="@android:color/secondary_text_light"
+        app:met_floatingLabel="highlight"
+        app:met_maxCharacters="80"
+        app:met_primaryColor="?colorAccent"
+        app:met_singleLineEllipsis="true" />
 
-        />
 
 </LinearLayout>

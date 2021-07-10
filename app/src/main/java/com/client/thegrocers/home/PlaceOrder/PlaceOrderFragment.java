@@ -36,6 +36,7 @@ import com.client.thegrocers.EventBus.CartClearedInPlaceOrder;
 import com.client.thegrocers.EventBus.CounterCartEvent;
 import com.client.thegrocers.EventBus.HideFABCart;
 import com.client.thegrocers.EventBus.UpdateItemInCart;
+import com.client.thegrocers.Model.CouponModel;
 import com.client.thegrocers.Model.Order;
 import com.client.thegrocers.Model.ShipCred;
 import com.client.thegrocers.Payment.PaymentGatewayActivity;
@@ -43,15 +44,18 @@ import com.client.thegrocers.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -129,6 +133,17 @@ public class PlaceOrderFragment extends Fragment implements ILoadTimeFromFirebas
     @BindView(R.id.edt_special_instruction)
     EditText edtSpecialInstruction;
 
+    @BindView(R.id.apply_coupon_edt)
+    MaterialEditText applyCouponEdt;
+
+    @BindView(R.id.apply_coupon_btn)
+    Button applyCouponBtn;
+
+    @BindView(R.id.discount_tv_po)
+    TextView discountTv;
+
+    double priceAfterAppliedCoupon;
+
     private String email,password;
 
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -140,6 +155,8 @@ public class PlaceOrderFragment extends Fragment implements ILoadTimeFromFirebas
     private ILoadTimeFromFirebaseListener listener;
 
     private AlertDialog placingOrderDialog;
+
+    private CouponModel appliedCoupon;
 
     @BindView(R.id.place_order_btn_po)
     Button placeOrderBtn;
@@ -163,52 +180,52 @@ public class PlaceOrderFragment extends Fragment implements ILoadTimeFromFirebas
         compositeDisposable.add(cartDataSource.getAllCart(Common.currentUser.getUid())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<CartItem>>() {
-                               @Override
-                               public void accept(List<CartItem> cartItems) throws Exception {
-                                   cartDataSource.sumPriceInCart(Common.currentUser.getUid())
-                                           .subscribeOn(Schedulers.io())
-                                           .observeOn(AndroidSchedulers.mainThread())
-                                           .subscribe(new SingleObserver<Double>() {
-                                               @Override
-                                               public void onSubscribe(Disposable d) {
+                .subscribe(cartItems ->
+                        cartDataSource.sumPriceInCart(Common.currentUser.getUid())
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new SingleObserver<Double>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
 
-                                               }
+                            }
 
-                                               @Override
-                                               public void onSuccess(Double totalPrice) {
+                            @Override
+                            public void onSuccess(Double totalPrice) {
 
-                                                   Order order = new Order();
-                                                   order.setUserId(Common.currentUser.getUid());
-                                                   order.setUserName(Common.currentUser.getName());
-                                                   order.setUserPhone(Common.currentUser.getPhone());
-                                                   order.setUserEmail(Common.currentUser.getEmail());
-                                                   order.setCartItemList(cartItems);
-                                                   if (totalPrice < 1000){
-                                                       deliveryCharges = "50";
-                                                       order.setTotalPayment(totalPrice + Double.parseDouble(deliveryCharges));
-                                                       order.setFinalPayment(totalPrice + Double.parseDouble(deliveryCharges));
-                                                   }else {
-                                                       order.setTotalPayment(totalPrice);
-                                                       order.setFinalPayment(totalPrice);
-                                                   }
+                                Order order = new Order();
+                                order.setUserId(Common.currentUser.getUid());
+                                order.setUserName(Common.currentUser.getName());
+                                order.setUserPhone(Common.currentUser.getPhone());
+                                order.setUserEmail(Common.currentUser.getEmail());
+                                order.setCartItemList(cartItems);
+                                if (appliedCoupon != null){
+                                    order.setTotalPayment(priceAfterAppliedCoupon);
+                                    order.setFinalPayment(priceAfterAppliedCoupon);
+                                }else
+                                if (totalPrice < 1000){
+                                    deliveryCharges = "50";
+                                    order.setTotalPayment(totalPrice + Double.parseDouble(deliveryCharges));
+                                    order.setFinalPayment(totalPrice + Double.parseDouble(deliveryCharges));
+                                }else {
+                                    order.setTotalPayment(totalPrice);
+                                    order.setFinalPayment(totalPrice);
+                                }
 
-                                                   order.setDiscount(0);
-                                                   order.setAddress(Common.addressSelectedForDelivery);
-                                                   order.setCod(false);
-                                                   order.setTransactionId("Prepaid");
+                                order.setDiscount(0);
+                                order.setAddress(Common.addressSelectedForDelivery);
+                                order.setCod(false);
+                                order.setTransactionId("Prepaid");
 
-                                                   order.setSpecialInstructions(edtSpecialInstruction.getText().toString());
-                                                   syncLocalTimeWithGlobalTimeForOnlinePayment(order);
+                                order.setSpecialInstructions(edtSpecialInstruction.getText().toString());
+                                syncLocalTimeWithGlobalTimeForOnlinePayment(order);
 
-                                               }
-                                               @Override
-                                               public void onError(Throwable e) {
-                                                   Timber.e(e);
-                                               }
-                                           });
-                               }
-                           }, Timber::e
+                            }
+                            @Override
+                            public void onError(Throwable e) {
+                                Timber.e(e);
+                            }
+                        }), Timber::e
                 ));
     }
 
@@ -262,6 +279,10 @@ public class PlaceOrderFragment extends Fragment implements ILoadTimeFromFirebas
                                                    order.setUserName(Common.currentUser.getName());
                                                    order.setUserPhone(Common.currentUser.getPhone());
                                                    order.setCartItemList(cartItems);
+                                                   if (appliedCoupon != null){
+                                                       order.setTotalPayment(priceAfterAppliedCoupon);
+                                                       order.setFinalPayment(priceAfterAppliedCoupon);
+                                                   }else
                                                    if (totalPrice < 1000){
                                                        deliveryCharges = "50";
                                                        order.setTotalPayment(totalPrice + Double.parseDouble(deliveryCharges));
@@ -330,8 +351,37 @@ public class PlaceOrderFragment extends Fragment implements ILoadTimeFromFirebas
         iCurrentFragment.currentFragment("Other");
         listener = this;
         initViews();
+        initButtons();
         return view;
     }
+
+    private void initButtons() {
+        applyCouponBtn.setOnClickListener(v -> {
+            if (applyCouponEdt.getText().toString().equals("")){
+                Snackbar.make(v,"Enter coupon code to apply",Snackbar.LENGTH_SHORT).show();
+            }else {
+                FirebaseDatabase.getInstance().getReference(Common.COUPON_CODES_REF)
+                        .child(applyCouponEdt.getText().toString())
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                if (snapshot.exists()){
+                                    appliedCoupon = snapshot.getValue(CouponModel.class);
+                                    calculateTotalPrice();
+                                }else {
+                                    Snackbar.make(v,"Invalid coupon code",Snackbar.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                            }
+                        });
+            }
+        });
+    }
+
 
     private void initViews() {
         placingOrderDialog = new SpotsDialog.Builder().setCancelable(false).setContext(getContext()).build();
@@ -474,19 +524,28 @@ public class PlaceOrderFragment extends Fragment implements ILoadTimeFromFirebas
                                 .append(Common.formatPrice(aLong)));
                         if (aLong < 1000){
                             deliveryCharges = "50";
-                            Double atotal = aLong + Double.parseDouble(deliveryCharges);
+                            double atotal = aLong + Double.parseDouble(deliveryCharges);
+                            if (appliedCoupon != null){
+                                double p = Double.parseDouble(String.valueOf(appliedCoupon.getPercent()));
+                                discountTv.setText(new StringBuilder("-").append((p*atotal)/100));
+                                atotal = atotal - ((p*atotal)/100);
+                                priceAfterAppliedCoupon =atotal;
+                            }
                             total = String.valueOf(atotal);
-                            totalTv.setText(total);
-                            deliveryChargesTv.setText(deliveryCharges);
                         }else {
                             deliveryCharges = "0";
-                            Double atotal = aLong + Double.parseDouble(deliveryCharges);
+                            double atotal = aLong + Double.parseDouble(deliveryCharges);
+                            if (appliedCoupon != null){
+                                double p = Double.parseDouble(String.valueOf(appliedCoupon.getPercent()));
+                                discountTv.setText(new StringBuilder("-").append((p*atotal)/100));
+                                atotal = atotal - ((p*atotal)/100);
+                                priceAfterAppliedCoupon= atotal;
+                            }
                             total = String.valueOf(atotal);
-                            totalTv.setText(total);
-                            deliveryChargesTv.setText(deliveryCharges);
                         }
 
-
+                        totalTv.setText(total);
+                        deliveryChargesTv.setText(deliveryCharges);
                     }
 
                     @Override

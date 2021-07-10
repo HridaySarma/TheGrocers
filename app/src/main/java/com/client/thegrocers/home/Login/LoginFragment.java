@@ -39,6 +39,7 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -153,9 +154,9 @@ public class LoginFragment extends Fragment {
         builder.setMessage("Please fill information");
 
         View itemView  = LayoutInflater.from(getContext()).inflate(R.layout.layout_register,null,false);
-        final EditText edtName = itemView.findViewById(R.id.edt_name);
-        final EditText edt_last_name = itemView.findViewById(R.id.edt_last_name);
-        final EditText edt_phone = itemView.findViewById(R.id.edt_phone);
+        final MaterialEditText edtName = itemView.findViewById(R.id.edt_name);
+        final MaterialEditText edt_last_name = itemView.findViewById(R.id.edt_last_name);
+        final MaterialEditText edt_phone = itemView.findViewById(R.id.edt_phone);
         edt_phone.setText(user.getPhoneNumber());
         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
             @Override
