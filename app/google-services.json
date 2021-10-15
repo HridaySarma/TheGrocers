@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "144808757666-p0mueidaud7tor0kk7n1cnsop047plcm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.client.thegrocers",
+            "certificate_hash": "034a19e600acc41d1e41d00ba622ada7894e20cf"
+          }
+        },
+        {
           "client_id": "144808757666-tamqm95kgmb7ko765mi256pit1otqv1d.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -57,6 +65,43 @@
           "android_info": {
             "package_name": "com.client.thegrocersserver",
             "certificate_hash": "a1ffe37edd04b4c7d39fcb2e62ad3583d6f92816"
+          }
+        },
+        {
+          "client_id": "144808757666-tamqm95kgmb7ko765mi256pit1otqv1d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOfgaD_AOpAna2qLqu0pEj6DZcAHu-35k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144808757666-tamqm95kgmb7ko765mi256pit1otqv1d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144808757666:android:ca04876b3ae783db4dcafb",
+        "android_client_info": {
+          "package_name": "com.update.thegrocers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144808757666-n76mjdqq39301dq04lg0h4mkk7a8fhrl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.update.thegrocers",
+            "certificate_hash": "002466e9b39f9cdadfe2647e6d106a1d83b75f3a"
           }
         },
         {

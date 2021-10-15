@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/mainLayout"
-    android:background="#fff"
+    android:background="#0C2843"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
@@ -13,14 +13,13 @@
     <ImageView
         android:id="@+id/splash_screen"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:visibility="visible"
-        android:layout_centerInParent="true"
-        android:layout_height="wrap_content"
-        android:src="@drawable/newsplash"
         android:scaleType="fitCenter"
-        />
+        android:src="@drawable/designed_logo"
+        android:visibility="visible" />
     <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/spin_kit_main"
         style="@style/SpinKitView.Large.Circle"

@@ -27,8 +27,7 @@
                 <com.asksira.loopingviewpager.LoopingViewPager
                     android:id="@+id/new_prod_details_pager"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
+                    android:layout_height="match_parent" />
 
                 <com.rd.PageIndicatorView
                     android:layout_width="wrap_content"
@@ -48,17 +47,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_anchor="@id/appbar_new_prod_details"
-        app:layout_anchorGravity="bottom|end"
-        app:fabSize="normal"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_baseline_favorite_border_24"
-        android:backgroundTint="#fff"
 
-        />
 
 
     <androidx.cardview.widget.CardView
@@ -135,14 +124,14 @@
             android:layout_marginTop="32dp"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Brand Name"
-                android:textSize="12sp"
-                android:textColor="#000"
-                android:fontFamily="@font/varela_round"
-                />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Brand Name"-->
+<!--                android:textSize="12sp"-->
+<!--                android:textColor="#000"-->
+<!--                android:fontFamily="@font/varela_round"-->
+<!--                />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -152,6 +141,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/prod_details_name"
                     android:layout_width="0dp"
                     android:layout_weight="2.7"
                     android:text="Basic Logo Short Sleeve T-Shirt"
@@ -162,6 +152,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/prod_details_price"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.3"

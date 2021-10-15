@@ -220,6 +220,62 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="Discount Amount"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/playfairdisplay"
+                        android:padding="5dp"
+                        android:textColor="#000"
+                        />
+
+                    <TextView
+                        android:id="@+id/order_discount_amount_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="0"
+                        android:padding="5dp"
+                        android:textSize="15sp"
+                        android:textColor="#000"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Code Used"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/playfairdisplay"
+                        android:padding="5dp"
+                        android:textColor="#000"
+                        />
+
+                    <TextView
+                        android:id="@+id/order_code_used_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="N/A"
+                        android:padding="5dp"
+                        android:textSize="15sp"
+                        android:textColor="#000"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="Order Status"
                         android:textSize="16sp"
                         android:fontFamily="@font/playfairdisplay"

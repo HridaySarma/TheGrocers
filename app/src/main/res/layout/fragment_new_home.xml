@@ -139,7 +139,7 @@
             <com.rd.PageIndicatorView
                 android:id="@+id/pager_indicator_small_coupon"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 app:piv_viewPager="@+id/new_small_coupon_vp"
                 app:piv_animationDuration="300"
                 app:piv_animationType="worm"

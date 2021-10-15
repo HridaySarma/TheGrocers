@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
+    android:layout_width="250dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="10dp"
     android:backgroundTint="#fff"
+    android:layout_margin="5dp"
     app:cardCornerRadius="20dp"
     android:outlineSpotShadowColor="#fff"
     android:outlineAmbientShadowColor="#fff"
-    android:layout_height="200dp">
+    android:layout_height="130dp">
 
 
     <LinearLayout
@@ -20,7 +21,7 @@
             android:id="@+id/popular_cat_image"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:scaleType="center"
+            android:scaleType="fitXY"
             android:layout_weight="1.8"
             />
 
